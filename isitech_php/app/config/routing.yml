@@ -1,3 +1,8 @@
+sample_admin:
+    resource: "@SampleAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

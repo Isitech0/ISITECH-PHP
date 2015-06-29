@@ -24,6 +24,7 @@ php app/console cache:clear
 ```sh
 php app/console doctrine:database:drop --force
 php app/console doctrine:database:create
+php app/console doctrine:schema:update --force
 ```
 
 ### [Generate Entity/Bean](http://symfony.com/fr/doc/current/book/doctrine.html) :

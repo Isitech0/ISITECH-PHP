@@ -1,0 +1,50 @@
+<?php
+
+namespace Sample\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Utilisateur
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Utilisateur
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $password;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
+
+}
