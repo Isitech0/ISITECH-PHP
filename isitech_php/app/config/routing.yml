@@ -1,5 +1,15 @@
-isitech.php_admin:
-    resource: "@isitech_phpAdminBundle/Controller/"
+isitechphp_main:
+    resource: "@isitechphpMainBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+isitechphp_user:
+    resource: "@isitechphpUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+isitechphp_admin:
+    resource: "@isitechphpAdminBundle/Controller/"
     type:     annotation
     prefix:   /
 

@@ -6,7 +6,7 @@
 
     <!--
     <services>
-        <service id="isitech.php_admin.example" class="isitech_php\AdminBundle\Example">
+        <service id="isitechphp_main.example" class="isitechphp\MainBundle\Example">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

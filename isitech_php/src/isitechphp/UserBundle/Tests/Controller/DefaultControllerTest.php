@@ -1,6 +1,6 @@
 <?php
 
-namespace isitech_php\AdminBundle\Tests\Controller;
+namespace isitechphp\UserBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

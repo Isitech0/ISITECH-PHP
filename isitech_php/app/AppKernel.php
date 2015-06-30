@@ -18,7 +18,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new Sample\AdminBundle\SampleAdminBundle(),
-            new isitech_php\AdminBundle\isitech_phpAdminBundle(),
+            new isitechphp\AdminBundle\isitechphpAdminBundle(),
+            new isitechphp\UserBundle\isitechphpUserBundle(),
+            new isitechphp\MainBundle\isitechphpMainBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
