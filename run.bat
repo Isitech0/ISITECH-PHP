@@ -3,7 +3,7 @@ ECHO "Start project init"
 cd isitech_php/
 
 ECHO "Composer update"
-composer update
+cmd /c composer update
 
 ECHO "Clear cache"
 php app/console cache:clear

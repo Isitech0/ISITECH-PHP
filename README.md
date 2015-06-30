@@ -15,6 +15,11 @@ run.bat
 php symfony new Project
 ```
 
+### Update Dependencies with composer :
+```sh
+composer update
+```
+
 ### [Clean Cache](http://symfony.com/fr/doc/current/cookbook/console/usage.html):
 ```sh
 php app/console cache:clear
