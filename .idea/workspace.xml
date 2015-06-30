@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bbfb1fea-50bb-4339-bda5-9e909b04e325" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/isitech_php/src/isitechphp/AdminBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/isitech_php/src/isitechphp/AdminBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/isitech_php/src/isitechphp/MainBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/isitech_php/src/isitechphp/MainBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/isitech_php/src/isitechphp/UserBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/isitech_php/src/isitechphp/UserBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="bbfb1fea-50bb-4339-bda5-9e909b04e325" name="Default" comment="" />
     <ignored path="ISITECH-PHP.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -33,7 +28,7 @@
       <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/isitech_php/src/isitechphp/UserBundle/Controller/DefaultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8849408" vertical-offset="361" max-vertical-offset="1037">
+            <state vertical-scroll-proportion="0.74111676" vertical-offset="446" max-vertical-offset="1037">
               <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
               <folding />
             </state>
@@ -603,7 +598,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/isitech_php/src/isitechphp/UserBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8849408" vertical-offset="361" max-vertical-offset="1037">
+        <state vertical-scroll-proportion="0.74111676" vertical-offset="446" max-vertical-offset="1037">
           <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
           <folding />
         </state>
