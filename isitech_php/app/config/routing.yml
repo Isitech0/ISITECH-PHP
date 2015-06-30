@@ -1,3 +1,8 @@
+isitech.php_admin:
+    resource: "@isitech_phpAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 sample_admin:
     resource: "@SampleAdminBundle/Controller/"
     type:     annotation
