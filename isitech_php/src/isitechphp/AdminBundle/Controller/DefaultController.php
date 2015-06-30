@@ -8,12 +8,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/hello/{name}")
-     * @Template()
-     */
     public function indexAction($name)
     {
         return array('name' => $name);
     }
+
+    public function removeUser($id){
+        //appeller fonction remove user dans le entiée User
+    }
+
+    public function setRight($id){
+        //pareilavec fonction danscontroller User
+    }
+
 }
