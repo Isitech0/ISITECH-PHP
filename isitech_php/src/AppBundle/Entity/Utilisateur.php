@@ -50,8 +50,7 @@ class Utilisateur
     private $password;
 
     /**
-     * @var integer
-     * @ORM\OneToOne(targetEntity="Droit", inversedBy="cart")
+     * @ORM\OneToOne(targetEntity="Droit")
      * @ORM\JoinColumn(name="droit_id", referencedColumnName="id")
      */
     private $droit;
@@ -59,7 +58,7 @@ class Utilisateur
 
     public function __construct()
     {
-        $this->droit = new Droit();
+        //$this->droit = new Droit();
     }
 
     /**

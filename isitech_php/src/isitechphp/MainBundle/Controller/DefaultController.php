@@ -2,7 +2,7 @@
 
 namespace isitechphp\MainBundle\Controller;
 
-use isitechphp\MainBundle\Bean\Article;
+use AppBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -18,9 +18,9 @@ class DefaultController extends Controller
         //$articles = array();
         $unarticle = new Article();
 
-        $unarticle->id = 1;
-        $unarticle->nom = "Shit";
-        $unarticle->description = "pas bien";
+       // $unarticle->id = 1;
+        $unarticle->setNom("Shit");
+        $unarticle->setDescription("pas bien");
 
         $articles = array($unarticle);
 

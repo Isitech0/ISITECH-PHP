@@ -3,7 +3,9 @@
 namespace Sample\AdminBundle\Controller;
 
 //use Symfony\Component\Validator\Constraints\DateTime;
-use Sample\AdminBundle\Entity\Utilisateur;
+//use Sample\AdminBundle\Entity\Utilisateur;
+use AppBundle\Entity\Droit;
+use AppBundle\Entity\Utilisateur;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -28,9 +30,19 @@ class DefaultController extends Controller
     public function createUser()
     {
         $newuser = new Utilisateur();
-        $newuser->setName('Alexis');
+        $newuser->setNom('Alexis');
+        $newuser->setPrenom('landrieu');
         $newuser->setPassword(hash('sha256', 'azertyuiop'));
-        $newuser->setDescription('TEST ');
+        $newuser->setMail('toto@toto.com');
+
+        $newdroit = new Droit();
+
+        $newdroit->setId(1);
+        $newdroit->setNom("admin");
+        $newdroit->setPriorite(0);
+
+        $newuser->setDroit($newdroit);
+
 
         //        $dt = new DateTime();
         //       $newuser->setDescription('Test User' + $dt->format('Y-m-d H:i:s'));
@@ -39,7 +51,9 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Enregistrement de l'utilisateur
+
         $em->persist($newuser);
+        $em->persist($newdroit);
         $em->flush();
 
         return new Response('Id du utilisateur créé : '.$newuser->getId());
