@@ -4,7 +4,6 @@
     <option name="typedPaths">
       <list>
         <element elementPath="$PROJECT_DIR$/isitech_php/app" typeId="app_directory" />
-        <element elementPath="$PROJECT_DIR$/isitech_php/vendor" typeId="vendor_directory" />
         <element elementPath="$PROJECT_DIR$/isitech_php/web" typeId="web_directory" />
       </list>
     </option>

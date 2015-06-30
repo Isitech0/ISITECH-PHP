@@ -1,5 +1,9 @@
 
 ECHO "Start project init"
+cd isitech_php/
+
+ECHO "Composer update"
+composer update
 
 ECHO "Clear cache"
 php app/console cache:clear
