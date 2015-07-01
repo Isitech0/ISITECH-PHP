@@ -47,9 +47,9 @@ class DefaultController extends Controller
     }
 
     public function removeProduct(){
-//get connection
+        //get connection
         $conn = $this->get('database_connection');
-//run a query
+        //run a query
         $foo= $conn->fetchAll('select * from foo');
     }
 

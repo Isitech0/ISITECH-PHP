@@ -37,6 +37,15 @@ class DefaultController extends Controller
         return new Response('Id du utilisateur créé : '.$newuser->getId());
     }
 
+    /**
+        */
+    /**
+     * @param Utilisateur $entity
+     * @Route("/{id}/entity-remove", requirements={"id" = "\d+"}, name="delete_route_name")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     */
     public function dropAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -72,7 +81,9 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $com = $em->getRepository('UserBundle:Commentaire')->find($idCom);
         if (!$com) {
-            ²
+        }
+    }
+
     function addComment($idCom, $idUser, $message){
 
         $em = $this->getDoctrine()->getManager();
