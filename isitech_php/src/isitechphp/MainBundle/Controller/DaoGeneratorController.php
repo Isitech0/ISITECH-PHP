@@ -97,6 +97,23 @@ class DaoGeneratorController  extends Controller {
 
         $articleCollection->add($unArticle);
 
+
+        $unArticle = new Article();
+        $unArticle->setNom("ALCOOL");
+        $unArticle->setPrix(10);
+        $unArticle->setDescription("Catégorie : Dépresseurs, nom usuel : Drink, boisson, fort, Qu’est-ce que c’est ? L’alcool est obtenu par la fermentation de certains fruits ou certaines céréales ou par la distillation. Il fait partie de la famille des dépresseurs, c’est-à-dire qu’il agit sur le système nerveux central en engourdissant le cerveau et en ralentissant le fonctionnement du corps.
+        Son apparence : On retrouve l’alcool sous forme liquide dans diverses boissons : bière, « coolers », vin, cidre, apéritifs, digestifs et spiritueux.
+        Ses effets : L’alcool engourdit le cerveau et déséquilibre le comportement et la coordination des mouvements.L’effet de l’alcool se fera sentir plus vite s’il est consommé à jeun ou trop rapidement. Son effet se fera aussi sentir plus rapidement chez une personne de petite taille ou fatiguée. Enfin, il faut savoir que l’effet de l’alcool est influencé par l’interaction de trois facteurs : la personne, le contexte et le produit.");
+
+        $articleCollection->add($unArticle);
+
+        $unArticle = new Article();
+        $unArticle->setNom("COCAÏNE");
+        $unArticle->setPrix(20);
+        $unArticle->setDescription("Catégorie : Stimulants majeurs Son nom usuel : Coke, poudre, coco, coca, snow La cocaïne provoque : une contraction des vaisseaux sanguins; une irrégularité du rythme cardiaque; de l’hypertension artérielle  Elle procure : une euphorie; une impression de puissance.");
+
+        $articleCollection->add($unArticle);
+
         //  Ecrire en base
         $em = $this->getDoctrine()->getManager();
 
@@ -119,12 +136,33 @@ class DaoGeneratorController  extends Controller {
         $newuser->setPassword(hash('sha256', 'azertyuiop02'));
         $newuser->setMail('totommmm@toto.com');
 
+        $newuser1 = new Utilisateur();
+        $newuser1->setNom('Alexis');
+        $newuser1->setPrenom('2');
+        $newuser1->setPassword(hash('sha256', 'azertyuiop02'));
+        $newuser1->setMail('m@toto.com');
+
+        $newuser2 = new Utilisateur();
+        $newuser2->setNom('guillaume');
+        $newuser2->setPrenom('aume');
+        $newuser2->setPassword(hash('sha256', 'azertyuiop02'));
+        $newuser2->setMail('totm@toto.com');
+
+        $newuser3 = new Utilisateur();
+        $newuser3->setNom('Jeremy');
+        $newuser3->setPrenom('my');
+        $newuser3->setPassword(hash('sha256', 'azertyuiop02'));
+        $newuser3->setMail('toee@toto.com');
+
         // Récupération de l'instance ORM
         $droitRepository = $this->getDoctrine()
             ->getRepository('AppBundle:Droit');
 
         $newdroit = $droitRepository->find(1);
         $newuser->setDroit($newdroit);
+        $newuser1->setDroit($newdroit);
+        $newuser2->setDroit($newdroit);
+        $newuser3->setDroit($newdroit);
 
 
         //        $dt = new DateTime();
@@ -135,9 +173,13 @@ class DaoGeneratorController  extends Controller {
 
         // Enregistrement de l'utilisateur
         $em->persist($newuser);
+        $em->persist($newuser1);
+        $em->persist($newuser2);
+        $em->persist($newuser3);
         //$em->persist($newdroit);
         $em->flush();
 
-        return new Response('Id du utilisateur créé : '.$newuser->getId());
+       // return new Response('Id du utilisateur créé : '.$newuser->getId());
+
     }
 }
