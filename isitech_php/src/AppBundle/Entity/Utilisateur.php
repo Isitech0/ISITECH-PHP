@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,13 +52,21 @@ class Utilisateur
 
     /**
      * @ORM\ManyToOne(targetEntity="Droit", inversedBy="droit")
-     * @ORM\JoinColumn(name="droit_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="droit_id", referencedColumnName="id",nullable=false)
      */
     private $droit;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire",mappedBy="commentaire")
+     * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
+     */
+    private $commentaire;
+
+
     public function __construct()
     {
+        $this->commentaire=new ArrayCollection();
     }
 
     /**

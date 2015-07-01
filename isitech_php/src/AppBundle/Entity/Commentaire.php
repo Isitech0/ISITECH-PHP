@@ -38,22 +38,22 @@ class Commentaire
 
     /**
      * @var integer
-     * @ORM\OneToOne(targetEntity="Utilisateur", inversedBy="cart")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
      * @var integer
-     * @ORM\OneToOne(targetEntity="Article", inversedBy="cart")
-     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Article")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $article;
 
 
     public function __construct(){
         $this->user = new Utilisateur();
-        $this->article=new Article();
+        $this->article =new Article();
     }
 
 
