@@ -39,7 +39,6 @@ class CheckLogin extends Controller
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Utilisateur');
 
-
         $advert = $repository->findOneBy(array('nom' => $username));
 
         if($advert == Null)
@@ -65,10 +64,12 @@ class CheckLogin extends Controller
                 $session->invalidate();
                 $session->start();
 
-                $session->set('name', $username);
+                $session->set('user', $advert);
                 $test = 'identification correct';
-                echo $session->get('name');
-                return $this->render('isitechphpMainBundle:Default:index.html.twig');
+
+
+                //echo $azaz;
+                return $this->render('isitechphpMainBundle:Default:index.html.twig', array("user" =>$advert));
             }
             else
             {
