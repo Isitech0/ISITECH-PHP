@@ -18,10 +18,10 @@ class DefaultController extends Controller
         return array('name' => $name);
     }
 
-    public function removeUser($id){
-        \AppBundle\Entity\ $removeUser($this);
-        $yc = $this->get('Utilisateur');
-    }
+//    public function removeUser($id){
+//        \AppBundle\Entity\ $removeUser($this);
+//        $yc = $this->get('Utilisateur');
+//    }
 
     public function setRight($iduser, $droit){
         $unuser = new User($iduser);
