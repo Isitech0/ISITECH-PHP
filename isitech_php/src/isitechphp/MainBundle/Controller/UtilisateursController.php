@@ -17,17 +17,24 @@ class UtilisateursController extends Controller
     public function indexAction()
     {
 
-        $unutilisateur= new Utilisateur();
+//        $unutilisateur= new Utilisateur();
+//
+//        $unutilisateur->setNom("Leydier");
+//        $unutilisateur->setPrenom("Josselin");
+//        $unutilisateur->setMail("josselin.leydier@gmail.com");
+//        $unutilisateur->setPassword("josselin123");
+//
+//        $listeUtilisateur = new ArrayCollection();
+//        $listeUtilisateur->add($unutilisateur);
 
-        $unutilisateur->setNom("Leydier");
-        $unutilisateur->setPrenom("Josselin");
-        $unutilisateur->setMail("josselin.leydier@gmail.com");
-        $unutilisateur->setPassword("josselin123");
 
-        $listeUtilisateur = new ArrayCollection();
-        $listeUtilisateur->add($unutilisateur);
+        return $this->render('isitechphpMainBundle:Default:Utilisateurs.html.twig', array('utilisateurs' => $this->selectUtilisateur()));
+    }
+    public function selectUtilisateur()
+    {
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Utilisateur');
 
-
-        return $this->render('isitechphpMainBundle:Default:Utilisateurs.html.twig', array('utilisateurs' => $listeUtilisateur->toArray()));
+        return $repository->findAll();
     }
 }
