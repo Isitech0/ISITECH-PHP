@@ -15,15 +15,16 @@ class UtilisateursController extends Controller
     public function indexAction()
     {
 
-        $unutilisateur= new Article();
-        $unutilisateur->id = 1;
-        $unutilisateur->nom = "Leydier";
-        $unutilisateur->prenom = "Josselin";
-        $unutilisateur->mail = "josselin.leydier@gmail.com";
-        $unutilisateur->password ="josselin123";
+        $unutilisateur= new Utilisateur();
 
-        $articles = array($unutilisateur);
+        $unutilisateur->getId("1");
+        $unutilisateur->setNom("Leydier");
+        $unutilisateur->setPrenom("Josselin");
+        $unutilisateur->getMail("josselin.leydier@gmail.com");
+        $unutilisateur->getPassword("josselin123");
 
-        //return $this->render('isitechphpMainBundle:Default:ArticleView.html.twig', array('articles' => $articles));
+        $utilisateur = ArrayCollection($unutilisateur);
+
+        return $this->render('isitechphpMainBundle:Default:Utilisateurs.html.twig', array('utilisateur' => $unutilisateur));
     }
 }

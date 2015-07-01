@@ -3,22 +3,28 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1>Recent Articles<h1>
+        <h1>Compte utilisateur<h1>
                 <table class="table">
                     <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nom</th>
-                        <th>Description</th>
+                        <th>Prenom</th>
+                        <th>Email</th>
+                        <th>Password</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    {% for article in articles %}
+                    {% for utilisateur in unutilisateur %}
                         {#{{ include('isitechphpMainBundle:Default:ArticleDetails.html.twig', {'article': article}) }}#}
                         <tr>
-                            <td>{{ article.id }}</td>
-                            <td>{{ article.nom }}</td>
-                            <td>{{ article.description }}</td>
+                            <td>{{ utilisateur.id }}</td>
+                            <td>{{ utilisateur.nom }}</td>
+                            <td>{{ utilisateur.prenom }}</td>
+                            <td>{{ utilisateur.mail }}</td>
+                            <td>{{ utilisateur.password }}</td>
+
                         </tr>
                     {% endfor %}
                     </tbody>
