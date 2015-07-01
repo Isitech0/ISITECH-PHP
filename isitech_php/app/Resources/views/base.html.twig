@@ -50,18 +50,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
-                {% if online == true %}
-                    <ul>
-                            <li><a href="#">Se déconnecter</a></li>
-                    </ul>
+                {% if user is defined %}
+                    <li><a href="{{ path('login') }}">Se déconnecter</a></li>
+                {% else %}<li><a href="{{ path('login') }}">Se connecter</a></li> <li>
+                    <a href="{{ path('register') }}">S'enregistrer</a></li>
                 {% endif %}
-
-                <li>
-                    <a href="{{ path('register') }}">S'enregistrer</a>
-                </li>
-                <li>
-                    <a href="{{ path('login') }}">Se connecter</a>
-                </li>
                 <li>
                     <a href="#">Contact</a>
                 </li>
