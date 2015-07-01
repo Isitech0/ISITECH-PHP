@@ -83,7 +83,7 @@ class CheckLogin extends Controller
 
     /**
      * Example login
-     * @Route("/login")
+     * @Route("/login", name="login")
      * @return Response
      */
     public function login()
@@ -104,7 +104,7 @@ class CheckLogin extends Controller
 
     /**
      * Example register
-     * @Route("/register")
+     * @Route("/register", name="register")
      * @return Response
      */
     public function register()
@@ -114,7 +114,7 @@ class CheckLogin extends Controller
 
     /**
      * Example register_db
-     * @Route("/register_db")
+     * @Route("/register_db", name="registerdb")
      * @return Response
      */
     public function register_db()
