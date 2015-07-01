@@ -24,7 +24,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255,unique=true)
      */
     private $nom;
 
@@ -42,7 +42,16 @@ class Article
      */
     private $description;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire",mappedBy="commentaire")
+     * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
+     */
+    private $commentaire;
 
+    public function __construct()
+    {
+        $this->commentaire=new ArrayCollection();
+    }
     /**
      * Get id
      *
