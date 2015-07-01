@@ -16,4 +16,14 @@ class DefaultController extends Controller
     {
         return array('name');
     }
+
+    /**
+     * Example homepage
+     * @Route("/", name="homepagev2")
+     * @return Response
+     */
+    public function homepage()
+    {
+        return $this->render('isitechphpMainBundle:Default:index.html.twig');
+    }
 }
