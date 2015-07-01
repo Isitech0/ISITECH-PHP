@@ -50,7 +50,8 @@ class CheckLogin extends Controller
 
         if($advert != Null)
         {
-            $current_user =  $advert->getname();
+            $current_user =  $advert->getNom();
+
             $current_password = $advert->getpassword();
             if($username == $current_user  AND $password == $current_password)
             {
@@ -75,8 +76,6 @@ class CheckLogin extends Controller
                 return $this->render('isitechphpMainBundle:Default:login.html.twig');
             }
         }
-        echo $advert->getname();
-        echo $advert->getpassword();
 
         }
 
@@ -119,12 +118,18 @@ class CheckLogin extends Controller
      */
     public function register_db()
     {
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Droit');
+
+
+        $advert = $repository->findOneBy(array('id' => '2'));
+
         $newUser = new Utilisateur();
-        $newUser->setNom(trim($_POST['name']));
-        $newUser->setPassword('1234');
-        $newUser->setPrenom(trim($_POST['name']));
-        $newUser->setMail(trim($_POST['name']));
-        $newUser->setDroit('2');
+        $newUser->setNom(trim($_POST['lastname']));
+        $newUser->setPassword(trim (hash('sha256', trim($_POST['password']))));
+        $newUser->setPrenom(trim($_POST['firstname']));
+        $newUser->setMail(trim($_POST['email']));
+        $newUser->setDroit($advert);
 
         //        $dt = new DateTime();
         //       $newuser->setDescription('Test User' + $dt->format('Y-m-d H:i:s'));
@@ -136,7 +141,7 @@ class CheckLogin extends Controller
         $em->persist($newUser);
         $em->flush();
 
-        return $this->render('isitechphpMainBundle:Default:register.html.twig');
+        return $this->render('isitechphpMainBundle:Default:login.html.twig');
     }
 
     }
