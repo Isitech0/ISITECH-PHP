@@ -3,9 +3,9 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1>Compte utilisateur<h1>
-                <table class="table">
-                    <thead>
+        <div class="row-fluid"><h1>Compte utilisateur<h1></div>
+
+        <div class="row-fluid"><table class="table">
                     <tr>
                         <th>Id</th>
                         <th>Nom</th>
@@ -16,7 +16,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for utilisateur in unutilisateur %}
+                    {% for utilisateur in utilisateurs %}
                         {#{{ include('isitechphpMainBundle:Default:ArticleDetails.html.twig', {'article': article}) }}#}
                         <tr>
                             <td>{{ utilisateur.id }}</td>
@@ -28,7 +28,7 @@
                         </tr>
                     {% endfor %}
                     </tbody>
-                </table>
+                </table></div>
     </div>
 
     {#<div id="sidebar">#}

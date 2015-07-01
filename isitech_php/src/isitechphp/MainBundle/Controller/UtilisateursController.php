@@ -2,6 +2,8 @@
 
 namespace isitechphp\MainBundle\Controller;
 
+use AppBundle\Entity\Utilisateur;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -17,14 +19,15 @@ class UtilisateursController extends Controller
 
         $unutilisateur= new Utilisateur();
 
-        $unutilisateur->getId("1");
         $unutilisateur->setNom("Leydier");
         $unutilisateur->setPrenom("Josselin");
-        $unutilisateur->getMail("josselin.leydier@gmail.com");
-        $unutilisateur->getPassword("josselin123");
+        $unutilisateur->setMail("josselin.leydier@gmail.com");
+        $unutilisateur->setPassword("josselin123");
 
-        $utilisateur = ArrayCollection($unutilisateur);
+        $listeUtilisateur = new ArrayCollection();
+        $listeUtilisateur->add($unutilisateur);
 
-        return $this->render('isitechphpMainBundle:Default:Utilisateurs.html.twig', array('utilisateur' => $unutilisateur));
+
+        return $this->render('isitechphpMainBundle:Default:Utilisateurs.html.twig', array('utilisateurs' => $listeUtilisateur->toArray()));
     }
 }
