@@ -52,7 +52,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="urlImage", type="text")
+     * @ORM\Column(name="urlImage", type="text",nullable=true)
      */
     private $urlImage;
 
