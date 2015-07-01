@@ -29,7 +29,7 @@ class CheckLogin extends Controller
     {
 
 
-        $username = trim($_POST['username']);
+        $mail = trim($_POST['mail']);
         $password = trim(hash('sha256', trim($_POST['password'])));
         //$newuser->setPassword(hash('sha256', trim($_POST['password'])));
 
@@ -39,7 +39,7 @@ class CheckLogin extends Controller
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Utilisateur');
 
-        $advert = $repository->findOneBy(array('nom' => $username));
+        $advert = $repository->findOneBy(array('mail' => $mail));
 
         if($advert == Null)
         {
@@ -49,10 +49,10 @@ class CheckLogin extends Controller
 
         if($advert != Null)
         {
-            $current_user =  $advert->getNom();
+            $current_mail =  $advert->getMail();
 
             $current_password = $advert->getpassword();
-            if($username == $current_user  AND $password == $current_password)
+            if($mail == $current_mail  AND $password == $current_password)
             {
                 /*
                 session_destroy();
@@ -121,8 +121,6 @@ class CheckLogin extends Controller
     {
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Droit');
-
-
         $advert = $repository->findOneBy(array('id' => '2'));
 
         $newUser = new Utilisateur();
@@ -132,6 +130,17 @@ class CheckLogin extends Controller
         $newUser->setMail(trim($_POST['email']));
         $newUser->setDroit($advert);
 
+        $currentMail = $_POST['email'];
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Utilisateur');
+        $compareMail = $repository->findOneBy(array('mail' => $currentMail));
+
+        if ($compareMail != Null)
+        {
+            echo "L'utilisateur existe deja!";
+
+            return $this->render('isitechphpMainBundle:Default:register.html.twig');
+        }
         //        $dt = new DateTime();
         //       $newuser->setDescription('Test User' + $dt->format('Y-m-d H:i:s'));
 
@@ -142,6 +151,7 @@ class CheckLogin extends Controller
         $em->persist($newUser);
         $em->flush();
 
+        echo "L'utilisateur a bien été créé.";
         return $this->render('isitechphpMainBundle:Default:login.html.twig');
     }
 
