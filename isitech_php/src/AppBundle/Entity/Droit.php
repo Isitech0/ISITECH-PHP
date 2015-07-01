@@ -35,7 +35,15 @@ class Droit
      */
     private $priorite;
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="droit")
+     */
+    private $utilisateur;
 
+    public function __construct() {
+        $this->utilisateur = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -97,5 +105,38 @@ class Droit
     public function getPriorite()
     {
         return $this->priorite;
+    }
+
+    /**
+     * Add utilisateur
+     *
+     * @param \AppBundle\Entity\Utilisateur $utilisateur
+     * @return Droit
+     */
+    public function addUtilisateur(\AppBundle\Entity\Utilisateur $utilisateur)
+    {
+        $this->utilisateur[] = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Remove utilisateur
+     *
+     * @param \AppBundle\Entity\Utilisateur $utilisateur
+     */
+    public function removeUtilisateur(\AppBundle\Entity\Utilisateur $utilisateur)
+    {
+        $this->utilisateur->removeElement($utilisateur);
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }

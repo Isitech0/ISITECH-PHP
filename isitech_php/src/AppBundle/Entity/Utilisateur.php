@@ -38,19 +38,19 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=255)
+     * @ORM\Column(name="mail", type="string", length=255, unique=true)
      */
     private $mail;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255,unique=true)
+     * @ORM\Column(name="password", type="string", length=255, unique=false)
      */
     private $password;
 
     /**
-     * @ORM\OneToOne(targetEntity="Droit")
+     * @ORM\ManyToOne(targetEntity="Droit", inversedBy="droit")
      * @ORM\JoinColumn(name="droit_id", referencedColumnName="id")
      */
     private $droit;
@@ -58,7 +58,6 @@ class Utilisateur
 
     public function __construct()
     {
-        //$this->droit = new Droit();
     }
 
     /**
