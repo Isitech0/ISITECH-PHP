@@ -49,6 +49,14 @@ class Article
      */
     private $commentaire;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlImage", type="text")
+     */
+    private $urlImage;
+
+
     public function __construct()
     {
         $this->commentaire=new ArrayCollection();
