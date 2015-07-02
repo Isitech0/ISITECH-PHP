@@ -44,13 +44,20 @@ class Article
     private $description;
 
     /**
+     * Liste des commentaires de l'Article
      * @ORM\OneToMany(targetEntity="Commentaire",mappedBy="commentaire")
      * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
      */
-
-    // variable permettant de faire le lien avec l'entité commentaire
-    // un article peut avoir plusieurs commentaire
     private $commentaire;
+
+    /**
+     * Retourner la liste des commentaires de l'Article
+     * @return ArrayCollection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
 
     /**
      * @var string

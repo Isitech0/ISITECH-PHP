@@ -48,7 +48,7 @@ class Commentaire
     /**
      * @var integer
      * @ORM\ManyToOne(targetEntity="Article")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $article;
 
@@ -58,9 +58,6 @@ class Commentaire
         $this->user = new Utilisateur();
         $this->article =new Article();
     }
-
-
-
 
     /**
      * Get id

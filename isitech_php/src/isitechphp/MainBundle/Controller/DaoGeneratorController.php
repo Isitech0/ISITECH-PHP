@@ -191,9 +191,9 @@ class DaoGeneratorController  extends Controller {
 
     $newuser4 = new Utilisateur();
     $newuser4->setNom('Leydier');
-    $newuser4->setPrenom('Joselyn');
+    $newuser4->setPrenom('Josselin');
     $newuser4->setPassword(hash('sha256', 'mdp'));
-    $newuser4->setMail('joselyn@email.com');
+    $newuser4->setMail('josselin@email.com');
 
     // Récupération de l'instance ORM
     $droitRepository = $this->getDoctrine()
