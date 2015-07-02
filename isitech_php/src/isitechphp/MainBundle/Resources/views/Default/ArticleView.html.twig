@@ -133,6 +133,12 @@
                             <div class="slide-footer">
                                 <span class="pull-right buttons">
                                     <a href=" {{ path('articlescommentaires', { 'article': article.id } ) }} " class="btn btn-info" role="button">Détail</a>
+
+                                    {% if( ((app.session.get('user').droit) is defined) and
+                                    ( (app.session.get('user').droit.priorite) == 0) and
+                                    ( (app.session.get('user').droit.priorite) is not null) ) %}
+                                        <a href=" {{ path('supprimerarticle', { 'article': article.id } ) }} " class="btn btn-warning" role="button">Supprimer</a>
+                                    {% endif %}
                                 </span>
                             </div>
                         </div>
@@ -140,6 +146,14 @@
                 </div>
             {% endfor %}
         </div>
+        {% if( ((app.session.get('user').droit) is defined) and
+        ( (app.session.get('user').droit.priorite) == 0) and
+        ( (app.session.get('user').droit.priorite) is not null) ) %}
+            <div class="row-fluid">
+                <a href=" {{ path('articleadd') }} " class="btn btn-lg btn-block" role="button"><i class="fa fa-plus"></i>Ajouter un Article</a>
+                {#<button type='submit' name='Submit' value='Submit' class="btn btn-lg btn-block" role="button"><i class="fa fa-plus"></i>Ajouter un Article</button>#}
+            </div>
+        {% endif %}
     </div>
 
     {#<div id="sidebar">#}

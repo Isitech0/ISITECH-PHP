@@ -119,7 +119,6 @@ class ArticleController extends Controller {
         return isset($test) && !is_null($test);
     }
 
-
     /**
      * Supprimer un article
      * @Route("/supprimerarticle/{article}", name="supprimerarticle")
@@ -151,15 +150,15 @@ class ArticleController extends Controller {
     public function removeCommentaireAction(Commentaire $commentaire)
     {
         $em = $this->getDoctrine()->getManager();
-        $commentaire = $em->getRepository('AppBundle:Commentaire')->find($commentaire->getId());
+        $commentairebase = $em->getRepository('AppBundle:Commentaire')->find($commentaire->getId());
 
-        if (!$commentaire) {
+        if (!$commentairebase) {
             throw $this->createNotFoundException(
-                'Aucun commentaire trouvé pour cet id : '.$id
+                'Aucun commentaire trouvé pour cet id : '.$commentaire->getId()
             );
         }
 
-        $em->remove($commentaire);
+        $em->remove($commentairebase);
         $em->flush();
 
         // Retourner sur la route /articlescommentaires
@@ -183,7 +182,6 @@ class ArticleController extends Controller {
      */
     public function article_db()
     {
-
         $newArticle = new Article();
         $newArticle->setNom(trim($_POST['nom']));
         $newArticle->setPrix(trim (trim($_POST['prix'])));
@@ -205,7 +203,9 @@ class ArticleController extends Controller {
             </div>
             <?php
 
-            return $this->render('isitechphpMainBundle:Default:ArticleAdd.html.twig');
+            //return $this->render('isitechphpMainBundle:Default:ArticleAdd.html.twig');
+            // Retourner sur la route /articles
+            return $this->redirect($this->generateUrl('articles', array('articles' => $this->selectArticle())));
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -222,6 +222,8 @@ class ArticleController extends Controller {
         </div>
         <?php
 
-        return $this->render('isitechphpMainBundle:Default:ArticleAdd.html.twig');
+        //return $this->render('isitechphpMainBundle:Default:ArticleAdd.html.twig');
+        // Retourner sur la route /articles
+        return $this->redirect($this->generateUrl('articles', array('articles' => $this->selectArticle())));
     }
 }
