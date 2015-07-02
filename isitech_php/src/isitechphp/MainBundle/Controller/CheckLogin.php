@@ -54,19 +54,16 @@ class CheckLogin extends Controller
             $current_password = $advert->getpassword();
             if($mail == $current_mail  AND $password == $current_password)
             {
-                /*
-                session_destroy();
-                session_start ();
-                */
-
 
                 $session = new Session();
-                $session->invalidate();
-                $session->start();
+                //$session->invalidate();
+                //$session->start();
 
                 $session->set('user', $advert);
                 $test = 'identification correct';
 
+                //$info = new Info();
+                $this->container->get('request')->getSession()->set('info', $advert);
 
                 //echo $azaz;
                 return $this->render('isitechphpMainBundle:Default:index.html.twig');
