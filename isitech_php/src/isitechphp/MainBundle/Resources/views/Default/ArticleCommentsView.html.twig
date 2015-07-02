@@ -255,12 +255,17 @@
                     {% endfor %}
                 </div>
 
-                <div class="send-wrap ">
-                    <textarea class="form-control send-message" id="commentBox" rows="3" placeholder="Write a comment..."></textarea>
-                </div>
-                <div class="btn-panel">
-                    <a href=" {{ path('postercommentaire', { 'article': articles.id } ) }}" class="btn btn-lg btn-block" role="button"><i class="fa fa-plus"></i>Détail</a>
-                </div>
+                <form id='register' action=" {{ path('postercommentaire', { 'article': articles.id } ) }}" method='post'
+                          accept-charset='UTF-8'>
+                    <fieldset >
+                        <div class="send-wrap ">
+                            <textarea class="form-control send-message" name="commentBox" id="commentBox" rows="3" placeholder="Write a comment..."></textarea>
+                        </div>
+                        <div class="btn-panel">
+                            <button type='submit' name='Submit' value='Submit' class="btn btn-lg btn-block" role="button"><i class="fa fa-plus"></i>Post</button>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>

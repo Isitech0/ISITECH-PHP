@@ -57,7 +57,7 @@ class ArticleController extends Controller {
 
     /**
      * Créer un nouveau commentaire
-     * @Route("/articlescommentaires/{article}", name="postercommentaire")
+     * @Route("/postercommentaire/{article}", name="postercommentaire")
      * @Template()
      */
     public function posterCommentaireAction(Article $article)
@@ -72,7 +72,10 @@ class ArticleController extends Controller {
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Utilisateur');
 
-        //$user = $repository->find($user->getId());
+//        $session = new Session();
+//        $user = $session->get('user');
+//if($user != )
+//        $user = $repository->find($user->getId());
         $user = $repository->find(1);
 
         // Création du nouveau commentaire
@@ -81,8 +84,10 @@ class ArticleController extends Controller {
         $comment->setArticle($article);
         $comment->setUser($user);
 
-        $comment->setDate(new \DateTime());
-        $comment->setNote("testetestsddfsdf");
+        $date = new \DateTime();
+
+        $comment->setDate($date->format('Y-m-d H:i:s'));
+        $comment->setNote(trim($_POST['commentBox']));
 
         $em = $this->getDoctrine()->getManager();
 
@@ -96,6 +101,7 @@ class ArticleController extends Controller {
 
         $commentaireList = $repository->findByArticle(array('article_id' => $article->getId()));
 
-        return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
+       return $this->redirect($this->generateUrl('articlescommentaires', array('article' => $article->getId() )));
+       //return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
     }
 }

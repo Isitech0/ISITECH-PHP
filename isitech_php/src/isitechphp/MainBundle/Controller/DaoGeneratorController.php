@@ -139,25 +139,25 @@ class DaoGeneratorController  extends Controller {
     $newuser = new Utilisateur();
     $newuser->setNom('Ali');
     $newuser->setPrenom('_');
-    $newuser->setPassword(hash('sha256', 'azertyuiop02'));
+    $newuser->setPassword(hash('sha256', 'mdp'));
     $newuser->setMail('totommmm@toto.com');
 
     $newuser1 = new Utilisateur();
     $newuser1->setNom('Alexis');
     $newuser1->setPrenom('2');
-    $newuser1->setPassword(hash('sha256', 'azertyuiop02'));
+    $newuser1->setPassword(hash('sha256', 'mdp'));
     $newuser1->setMail('m@toto.com');
 
     $newuser2 = new Utilisateur();
     $newuser2->setNom('guillaume');
     $newuser2->setPrenom('aume');
-    $newuser2->setPassword(hash('sha256', 'azertyuiop02'));
+    $newuser2->setPassword(hash('sha256', 'mdp'));
     $newuser2->setMail('totm@toto.com');
 
     $newuser3 = new Utilisateur();
     $newuser3->setNom('Jeremy');
     $newuser3->setPrenom('my');
-    $newuser3->setPassword(hash('sha256', 'azertyuiop02'));
+    $newuser3->setPassword(hash('sha256', 'mdp'));
     $newuser3->setMail('toee@toto.com');
 
     // Récupération de l'instance ORM
