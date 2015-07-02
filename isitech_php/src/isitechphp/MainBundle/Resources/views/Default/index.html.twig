@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    <style>.fixedsize{height:200px;width:200px;}</style>
 
     <!-- Jumbotron Header -->
     <header class="jumbotron hero-spacer">
@@ -27,10 +27,10 @@
     <div class="row text-center">
 
     {% for article in articles %}
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
+        <div class="col-md-3 col-sm-5 hero-feature">
+            <div class="thumbnail fixedsize">
                 <h3>{{ article.nom }}</h3>
-                <img src={{ article.urlImage }} alt="Image" class="img-responsive center-block">
+                <img src="{{ article.urlImage }}" alt="Image {{ article.nom }}" class="img-responsive center-block">
                 <div class="caption">
 
                 </div>
