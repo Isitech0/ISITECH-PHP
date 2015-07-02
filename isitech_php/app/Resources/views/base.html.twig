@@ -54,12 +54,12 @@
                 et la possibilité de se déconnecté alors -->
                 {% if (app.session.get('user').nom) is defined %}
                     <li><a href="{{ path('articles') }}">Drogues Store</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ path('contact') }}">Contact</a></li>
                     <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
                  <!-- Sinon lui proposer de s'enregistrer et de se connecter -->
                 {% else %}<li><a href="{{ path('login') }}">Se connecter</a></li> <li>
                     <a href="{{ path('register') }}">S'enregistrer</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ path('contact') }}">Contact</a></li>
                 {% endif %}
 
             </ul>
