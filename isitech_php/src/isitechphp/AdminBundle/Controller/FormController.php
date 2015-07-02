@@ -21,8 +21,7 @@ class FormController extends Controller
         $task->setForm('foobar');
 
         $form = $this->createFormBuilder($task)
-            ->add('form', 'text')
-            ->add('save', 'submit')
+            ->add('Delete', 'submit')
             ->getForm();
 
         return $this->render('isitechphpAdminBundle:form:form.html.twig', array(
