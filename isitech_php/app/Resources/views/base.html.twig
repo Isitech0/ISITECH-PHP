@@ -50,9 +50,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
+                <!-- Si l'utilisateur est connecté, lui afficher le bouton des articles (drogues store)
+                et la possibilité de se déconnecté alors -->
                 {% if user is defined %}
                     <li><a href="{{ path('login') }}">Se déconnecter</a></li>
                     <a href="{{ path('articles') }}">Drogues Store</a></li>
+
+                 <!-- Sinon lui proposer de s'enregistrer et de se connecter -->
                 {% else %}<li><a href="{{ path('login') }}">Se connecter</a></li> <li>
                     <a href="{{ path('register') }}">S'enregistrer</a></li>
                 {% endif %}
