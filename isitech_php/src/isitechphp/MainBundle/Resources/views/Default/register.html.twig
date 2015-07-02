@@ -1,47 +1,83 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {# DEBUT FORMULAIRE D'ENREGISTREMENT #}
+    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">S'enregistrer</div>
+                <div style="float:right; font-size: 85%; position: relative; top:-10px">
+                    <a id="signinlink" href="{{ path('login') }}">Se Connecter</a>
+                </div>
+            </div>
+            <div class="panel-body" >
+                <form id="signupform" action="{{ path('registerdb') }}" method='POST' class="form-horizontal" role="form">
 
-    <!-- All the files that are required -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+                    <div id="signupalert" style="display:none" class="alert alert-danger">
+                        <p>Error:</p>
+                        <span></span>
+                    </div>
 
-    <!-- Where all the magic happens -->
-    <!-- LOGIN FORM -->
-    <div class="text-center" style="padding:50px 0">
-        <div class="logo">login</div>
-        <!-- Main Form -->
-        <div class="login-form-1">
-            <form id="register" action='register_db' method='POST' class="text-left">
-                <div class="login-form-main-message"></div>
-                <div class="main-login-form">
-                    <div class="login-group">
-                        <div class="form-group">
-                            <label for="lg_username" class="sr-only">Email</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="lg_username" class="sr-only">Email</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prenom" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="lg_username" class="sr-only">Email</label>
+                    <div class="form-group">
+                        <label for="email" class="col-md-3 control-label">Email</label>
+                        <div class="col-md-9">
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email" require pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
                         </div>
-                        <div class="form-group">
-                            <label for="lg_password" class="sr-only">Password</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname" class="col-md-3 control-label">Nom</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname" class="col-md-3 control-label">Prenom</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prenom" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Password</label>
+                        <div class="col-md-9">
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password" required/>
                         </div>
-
                     </div>
-                    <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-                </div>
-            </form>
+
+                    <div class="form-group">
+                        <label for="icode" class="col-md-3 control-label">Confirm Password</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <button id="btn-signup" type="submit"  class="btn btn-info login-button"><i class="icon-hand-right"></i> &nbsp S'enregister</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <!-- end:Main Form -->
     </div>
+    {# FIN FORMULAIRE D'ENREGISTREMENT #}
 
+    {# DEBUT Vérification des mots de passe identiques #}
+    <script>
+        var password = document.getElementById("password")
+                , confirm_password = document.getElementById("confirm_password");
 
+        function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
+    {# FIN Vérification des mots de passe identiques #}
 {% endblock %}
