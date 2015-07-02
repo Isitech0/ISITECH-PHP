@@ -8,6 +8,7 @@
 namespace isitechphp\MainBundle\Controller;
 
 use AppBundle\Entity\Article;
+use AppBundle\Entity\Commentaire;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -23,6 +24,9 @@ class ArticleController extends Controller {
         return $this->render('isitechphpMainBundle:Default:ArticleView.html.twig', array('articles' => $this->selectArticle()));
     }
 
+    /**
+     * Retroune tous les articles de la BDD
+     */
     private function selectArticle()
     {
         $repository = $this->getDoctrine()
@@ -32,6 +36,7 @@ class ArticleController extends Controller {
     }
 
     /**
+     * Selectionner un Article avec tous ses commentaires
      * @Route("/articlescommentaires/{article}", name="articlescommentaires")
      * @Template()
      */
@@ -46,6 +51,50 @@ class ArticleController extends Controller {
             ->getRepository('AppBundle:Article');
 
         $article = $repository->find($article->getId());
+
+        return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
+    }
+
+    /**
+     * Créer un nouveau commentaire
+     * @Route("/articlescommentaires/{article}", name="postercommentaire")
+     * @Template()
+     */
+    public function posterCommentaireAction(Article $article)
+    {
+        // Récupération de l'article
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Article');
+
+        $article = $repository->find($article->getId());
+
+        // Récupération de l'utilisateur
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Utilisateur');
+
+        //$user = $repository->find($user->getId());
+        $user = $repository->find(1);
+
+        // Création du nouveau commentaire
+        $comment = new Commentaire();
+
+        $comment->setArticle($article);
+        $comment->setUser($user);
+
+        $comment->setDate(new \DateTime());
+        $comment->setNote("testetestsddfsdf");
+
+        $em = $this->getDoctrine()->getManager();
+
+        // Enregistrement de commentaire
+        $em->persist($comment);
+        $em->flush();
+
+        // Rafraichir la liste des commentaires
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Commentaire');
+
+        $commentaireList = $repository->findByArticle(array('article_id' => $article->getId()));
 
         return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
     }
