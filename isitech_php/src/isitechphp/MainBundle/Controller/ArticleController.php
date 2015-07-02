@@ -119,6 +119,53 @@ class ArticleController extends Controller {
         return isset($test) && !is_null($test);
     }
 
+
+    /**
+     * Supprimer un article
+     * @Route("/supprimerarticle/{article}", name="supprimerarticle")
+     * @Template()
+     */
+    public function removeArticleAction(Article $article)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('AppBundle:Article')->find($article->getId());
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'Aucun Article trouvé pour cet id : '.$id
+            );
+        }
+
+        $em->remove($article);
+        $em->flush();
+
+        // Retourner sur la route /articles
+        return $this->redirect($this->generateUrl('articles', array('articles' => $this->selectArticle())));
+    }
+
+    /**
+     * Supprimer un commentaire
+     * @Route("/supprimercommentaire/{commentaire}", name="supprimercommentaire")
+     * @Template()
+     */
+    public function removeCommentaireAction(Commentaire $commentaire)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commentaire = $em->getRepository('AppBundle:Commentaire')->find($commentaire->getId());
+
+        if (!$commentaire) {
+            throw $this->createNotFoundException(
+                'Aucun commentaire trouvé pour cet id : '.$id
+            );
+        }
+
+        $em->remove($commentaire);
+        $em->flush();
+
+        // Retourner sur la route /articlescommentaires
+        return $this->redirect($this->generateUrl('articlescommentaires', array('article' => $commentaire->getArticle()->getId() )));
+    }
+
     /**
      * Example article_add
      * @Route("/article_add", name="articleadd")

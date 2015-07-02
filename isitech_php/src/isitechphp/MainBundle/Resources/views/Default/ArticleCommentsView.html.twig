@@ -255,7 +255,7 @@
                             ( (app.session.get('user').droit.priorite) == 0) and
                             ( (app.session.get('user').droit.priorite) is not null) ) %}
                                 <div class="row text-center">
-                                    <a class="btn btn-warning" href="{{ path('supprimercommentaire', { 'comment': comment.id } ) }}">Supprimer</a>
+                                    <a class="btn btn-warning" href="{{ path('supprimercommentaire', { 'commentaire': comment.id } ) }}">Supprimer</a>
                                 </div>
                             {% endif %}
                         </div>
