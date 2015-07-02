@@ -7,28 +7,43 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends Controller
+class AdminController extends Controller
 {
     /**
-     * @Route("/admin/{name}")
+     * @Route("/admin")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return $this->render('isitechphpAdminBundle:Admin:index.html.twig', array('utilisateurs' => $this->showUsers()));
+
     }
 
-//    public function removeUser($id){
-//        \AppBundle\Entity\ $removeUser($this);
-//        $yc = $this->get('Utilisateur');
-//    }
+    public function showUsers(){
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Utilisateur');
+
+        return $repository->findAll();
+    }
+    /**
+     * @Route("/admin")
+     * @Template()
+     */
+    public function removeUser($id){
+      //  \AppBundle\Entity\ $removeUser($this);
+      //  $yc = $this->get('Utilisateur');
+        return array('name' => $id);
+    }
 
     public function setRight($iduser, $droit){
         $unuser = new User($iduser);
         $unuser->setDroit($droit);
         //pareilavec fonction danscontroller User
     }
-
+    /**
+     * @Route("/admin")
+     * @Template()
+     */
     public function addproduct($name,$price,$desc){
         $art = new Article();
         $art->setNom($name);
@@ -50,7 +65,8 @@ class DefaultController extends Controller
         //get connection
         $conn = $this->get('database_connection');
         //run a query
-        $foo= $conn->fetchAll('select * from foo');
+
     }
+
 
 }

@@ -1,1 +1,38 @@
-Hello {{ name }}!
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <h1>Users<h1>
+        </div>
+        <div class="row-fluid">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Droit</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for usr in utilisateurs %}
+                    <tr>
+                        <td>{{ usr.id }}</td>
+                        <td>{{ usr.nom }}</td>
+                        <td>{{ usr.prenom }}</td>
+                        <td>{{ usr.mail }}</td>
+                        <td>{{ usr.password }}</td>
+                        <td>{{ usr.droit.nom }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{ form(form) }}
+
+{% endblock %}
