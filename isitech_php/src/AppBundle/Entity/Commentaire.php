@@ -29,9 +29,9 @@ class Commentaire
     private $note;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="string",length=255)
      */
     private $date;
 
@@ -113,5 +113,52 @@ class Commentaire
     public function getDate()
     {
         return $this->date;
+    }
+
+
+    /**
+     * Set setUser
+     *
+     * @param integer $user
+     * @return Utilisateur
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set setArticle
+     *
+     * @param integer $article
+     * @return Utilisateur
+     */
+    public function setArticle($article)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return integer
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }
