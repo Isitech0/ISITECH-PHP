@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ArticleController extends Controller {
     /**
@@ -72,36 +73,43 @@ class ArticleController extends Controller {
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Utilisateur');
 
-//        $session = new Session();
-//        $user = $session->get('user');
-//if($user != )
-//        $user = $repository->find($user->getId());
-        $user = $repository->find(1);
+        $session = new Session();
+        $user = $session->get('user');
 
-        // Création du nouveau commentaire
-        $comment = new Commentaire();
+        if($this->is_undefined($user) != false)
+        {
+            $user = $repository->find($user->getId());
+            //$user = $repository->find(1);
 
-        $comment->setArticle($article);
-        $comment->setUser($user);
+            // Création du nouveau commentaire
+            $comment = new Commentaire();
 
-        $date = new \DateTime();
+            $comment->setArticle($article);
+            $comment->setUser($user);
 
-        $comment->setDate($date->format('Y-m-d H:i:s'));
-        $comment->setNote(trim($_POST['commentBox']));
+            $date = new \DateTime();
 
-        $em = $this->getDoctrine()->getManager();
+            $comment->setDate($date->format('Y-m-d H:i:s'));
+            $comment->setNote(trim($_POST['commentBox']));
 
-        // Enregistrement de commentaire
-        $em->persist($comment);
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
 
-        // Rafraichir la liste des commentaires
-        $repository = $this->getDoctrine()
-            ->getRepository('AppBundle:Commentaire');
+            // Enregistrement de commentaire
+            $em->persist($comment);
+            $em->flush();
 
-        $commentaireList = $repository->findByArticle(array('article_id' => $article->getId()));
+            // Rafraichir la liste des commentaires
+            $repository = $this->getDoctrine()
+                ->getRepository('AppBundle:Commentaire');
+
+            $commentaireList = $repository->findByArticle(array('article_id' => $article->getId()));
+        }
 
        return $this->redirect($this->generateUrl('articlescommentaires', array('article' => $article->getId() )));
        //return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
+    }
+
+    private function is_undefined(&$test) {
+        return isset($test) && !is_null($test);
     }
 }
