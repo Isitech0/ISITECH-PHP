@@ -202,7 +202,7 @@ class DaoGeneratorController  extends Controller {
 
         $newcom2 = new Commentaire();
         $newcom2->setNote('pas d alcool au volant');
-        $newcom2->setDate('21/05/2015');
+        $newcom2->setDate('05/21/2015');
 
 
         // Récupération de l'instance ORM
