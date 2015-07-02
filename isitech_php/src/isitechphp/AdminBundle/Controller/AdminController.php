@@ -7,10 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use isitechphp\AdminBundle\Entity\Task;
+use isitechphp\AdminBundle\Controller\Form;
+
+
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin/users", name="users")
+     * @Route("/admin/users", name="userscontrol")
      * @Template()
      */
     public function usersAction()
@@ -26,7 +30,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/articles", name="articles")
+     * @Route("/admin/articles", name="articlescontrol")
      * @Template()
      */
     public function articlesAction()
