@@ -69,7 +69,7 @@ class CheckLogin extends Controller
 
 
                 //echo $azaz;
-                return $this->render('isitechphpMainBundle:Default:index.html.twig', array("user" =>$advert));
+                return $this->render('isitechphpMainBundle:Default:index.html.twig');
             }
             else
             {
