@@ -25,7 +25,7 @@ class CheckLogin extends Controller
 //puis je compare le mot de passe transmit par le firmulaire avec celui récupéré dans la bdd.
     /**
      * Example check_login
-     * @Route("/check_login")
+     * @Route("/check_login", name="checkuserlogin")
      * @return Response
      */
     public function check_login()
