@@ -141,6 +141,7 @@ class ArticleController extends Controller {
         $newArticle->setNom(trim($_POST['nom']));
         $newArticle->setPrix(trim (trim($_POST['prix'])));
         $newArticle->setDescription(trim($_POST['description']));
+        $newArticle->setUrlImage(trim($_POST['url']));
 
         $currentArticle = $_POST['nom'];
         $repository = $this->getDoctrine()
