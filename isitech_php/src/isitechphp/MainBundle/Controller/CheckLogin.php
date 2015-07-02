@@ -8,6 +8,7 @@
 
 namespace isitechphp\MainBundle\Controller;
 
+use AppBundle\Entity\Droit;
 use AppBundle\Entity\Utilisateur;
 //use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -60,8 +61,9 @@ class CheckLogin extends Controller
                 $repository = $this->getDoctrine()
                     ->getRepository('AppBundle:Droit');
 
-                $droit = $repository->find ($advert.getDroit().getId());
-                $advert.setDroit($droit);
+                $droit = $repository->findOneBy(array('id' => $advert->getDroit()));
+                $advert->setDroit($droit);
+                //echo $advert->getDroit().nom;
 
                 $session = new Session();
                 //$session->invalidate();
