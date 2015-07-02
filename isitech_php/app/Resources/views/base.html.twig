@@ -52,7 +52,7 @@
 
                 <!-- Si l'utilisateur est connecté, lui afficher le bouton des articles (drogues store)
                 et la possibilité de se déconnecté alors -->
-                {% if user is defined %}
+                {% if (app.session.get('user')) is defined %}
                     <li><a href="{{ path('login') }}">Se déconnecter</a></li>
                     <a href="{{ path('articles') }}">Drogues Store</a></li>
 
