@@ -76,6 +76,7 @@ class ArticleController extends Controller {
         $session = new Session();
         $user = $session->get('user');
 
+        // Si l'utilisateur existe
         if($this->is_undefined($user) != false)
         {
             $user = $repository->find($user->getId());
@@ -105,10 +106,15 @@ class ArticleController extends Controller {
             $commentaireList = $repository->findByArticle(array('article_id' => $article->getId()));
         }
 
+       // Retourner sur la route /articlescommentaires
        return $this->redirect($this->generateUrl('articlescommentaires', array('article' => $article->getId() )));
-       //return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
     }
 
+    /**
+     * Méthode pour vérifier si un objet est null
+     * @param $test
+     * @return bool
+     */
     private function is_undefined(&$test) {
         return isset($test) && !is_null($test);
     }

@@ -140,25 +140,31 @@ class DaoGeneratorController  extends Controller {
     $newuser->setNom('Ali');
     $newuser->setPrenom('_');
     $newuser->setPassword(hash('sha256', 'mdp'));
-    $newuser->setMail('totommmm@toto.com');
+    $newuser->setMail('ali@email.com');
 
     $newuser1 = new Utilisateur();
     $newuser1->setNom('Alexis');
-    $newuser1->setPrenom('2');
+    $newuser1->setPrenom('Landrieu');
     $newuser1->setPassword(hash('sha256', 'mdp'));
-    $newuser1->setMail('m@toto.com');
+    $newuser1->setMail('alexis@email.com');
 
     $newuser2 = new Utilisateur();
-    $newuser2->setNom('guillaume');
+    $newuser2->setNom('Guillaume');
     $newuser2->setPrenom('aume');
     $newuser2->setPassword(hash('sha256', 'mdp'));
-    $newuser2->setMail('totm@toto.com');
+    $newuser2->setMail('guillaume@email.com');
 
     $newuser3 = new Utilisateur();
     $newuser3->setNom('Jeremy');
     $newuser3->setPrenom('my');
     $newuser3->setPassword(hash('sha256', 'mdp'));
-    $newuser3->setMail('toee@toto.com');
+    $newuser3->setMail('jeremy@email.com');
+
+    $newuser4 = new Utilisateur();
+    $newuser4->setNom('Joselyn');
+    $newuser4->setPrenom('my');
+    $newuser4->setPassword(hash('sha256', 'mdp'));
+    $newuser4->setMail('joselyn@email.com');
 
     // Récupération de l'instance ORM
     $droitRepository = $this->getDoctrine()
@@ -170,9 +176,8 @@ class DaoGeneratorController  extends Controller {
     $newuser2->setDroit($newdroit);
     $newuser3->setDroit($newdroit);
 
-
-    //        $dt = new DateTime();
-    //       $newuser->setDescription('Test User' + $dt->format('Y-m-d H:i:s'));
+    $newdroit = $droitRepository->find(2);
+    $newuser4->setDroit($newdroit);
 
     // Récupération de l'instance ORM
     $em = $this->getDoctrine()->getManager();
@@ -182,6 +187,7 @@ class DaoGeneratorController  extends Controller {
     $em->persist($newuser1);
     $em->persist($newuser2);
     $em->persist($newuser3);
+    $em->persist($newuser4);
     //$em->persist($newdroit);
     $em->flush();
 

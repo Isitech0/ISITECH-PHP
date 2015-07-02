@@ -226,9 +226,9 @@
                                     <p><strong>Prix : {{ articles.prix }} €  / gr</strong></p>
                                 </li>
                             </ul>
-                            <div class="panel-footer">
-                                <a class="btn btn-lg btn-block btn-danger disabled" href="#">BUY NOW!</a>
-                            </div>
+                            {#<div class="panel-footer">#}
+                                {#<a class="btn btn-lg btn-block btn-danger disabled" href="#">BUY NOW!</a>#}
+                            {#</div>#}
                         </div>
                     </div>
                 </div>
@@ -248,13 +248,26 @@
                         <div class="media-body">
                             <small class="pull-right time"><i class="fa fa-clock-o"></i>{{ comment.date|date('Y-m-d H:i:s') }}</small>
 
-                            <h5 class="media-heading">{{ comment.user.nom }}</h5>
+                            <h5 class="media-heading">{{ comment.user.nom }}.{{ comment.user.prenom }}</h5>
                             <small class="col-lg-10"> #{{ comment.id }} <br>{{ comment.note }}</small>
+
+                            {% if( (app.session.get('user').droit.priorite) is defined) and
+                            ( (app.session.get('user').droit.priorite) == 0) and
+                            ( (app.session.get('user').droit.priorite) != null) %}
+                                <div class="row text-right">
+                                    <p>Priorité : {{ (app.session.get('user').droit.priorite) }}</p>
+                                    <a class="btn btn-warning" href="#">Supprimer</a>
+                                </div>
+                            {% endif %}
                         </div>
+                        <pre>
+                            {{ dump((app.session.get('user'))) }}
+                        </pre>
                     </div>
                     {% endfor %}
                 </div>
 
+                {% if (app.session.get('user').nom) is defined %}
                 <form id='register' action=" {{ path('postercommentaire', { 'article': articles.id } ) }}" method='post'
                           accept-charset='UTF-8'>
                     <fieldset >
@@ -266,6 +279,7 @@
                         </div>
                     </fieldset>
                 </form>
+                {% endif %}
             </div>
         </div>
     </div>
