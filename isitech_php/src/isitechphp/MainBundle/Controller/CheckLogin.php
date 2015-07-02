@@ -19,7 +19,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class CheckLogin extends Controller
 {
 
-
+//La fonction recupére le mail et le mot de passe envoyés par le formulaire dans la page login.html.twig,
+//premièrement je vérifie que le mail est bien présent dans la bdd, si il existe je récupère l'entrée correspondante
+//puis je compare le mot de passe transmit par le firmulaire avec celui récupéré dans la bdd.
     /**
      * Example check_login
      * @Route("/check_login")
@@ -55,29 +57,37 @@ class CheckLogin extends Controller
             if($mail == $current_mail  AND $password == $current_password)
             {
 
+                $repository = $this->getDoctrine()
+                    ->getRepository('AppBundle:Droit');
+
+                $droit = $repository->find ($advert.getDroit().getId());
+                $advert.setDroit($droit);
+
                 $session = new Session();
                 //$session->invalidate();
                 //$session->start();
+
 
                 $session->set('user', $advert);
                 $test = 'identification correct';
 
                 //$info = new Info();
-                $this->container->get('request')->getSession()->set('info', $advert);
+                //$this->container->get('request')->getSession()->set('info', $advert);
 
                 //echo $azaz;
-                return $this->render('isitechphpMainBundle:Default:index.html.twig');
+                //return $this->render('isitechphpMainBundle:Default:index.html.twig');
+                return $this->redirect($this->generateUrl('homepagev2'));
             }
             else
             {
-                echo "Le mot de passe est incorecte";
+                echo "Le mot de passe est incorrecte";
                 return $this->render('isitechphpMainBundle:Default:login.html.twig');
             }
         }
 
         }
 
-
+//Permet d'afficher la page login.html.twig, pour pouvoir se connecter.
     /**
      * Example login
      * @Route("/login", name="login")
@@ -88,17 +98,7 @@ class CheckLogin extends Controller
         return $this->render('isitechphpMainBundle:Default:login.html.twig');
     }
 
-
-    /**
- * Example checklogin
- * @Route("/checklogin")
- * @return Response
- */
-    public function checklogin()
-    {
-        return $this->render('isitechphpMainBundle:Default:CheckLogin.php');
-    }
-
+//Permet d'afficher la page register.html.twig, pour pouvouir créer un nouvel utilisateur.
     /**
      * Example register
      * @Route("/register", name="register")
@@ -109,6 +109,9 @@ class CheckLogin extends Controller
         return $this->render('isitechphpMainBundle:Default:register.html.twig');
     }
 
+//Fonction appelée quand le formulaire de création d'un utilisateur est soumis, premièrement je recupère les
+//valeurs puis je vérifie dans la base que l'adresse mail n'existe pas deja, si elle n'existe pas je créé l'utilisateur
+//dans la bdd
     /**
      * Example register_db
      * @Route("/register_db", name="registerdb")
@@ -134,21 +137,31 @@ class CheckLogin extends Controller
 
         if ($compareMail != Null)
         {
-            echo "L'utilisateur existe deja!";
+
+            ?>
+                <div class="alert alert-danger fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Erreur!</strong> L'utilisateur existe deja!
+                </div>
+            <?php
 
             return $this->render('isitechphpMainBundle:Default:register.html.twig');
         }
-        //        $dt = new DateTime();
-        //       $newuser->setDescription('Test User' + $dt->format('Y-m-d H:i:s'));
 
-        // Récupération de l'instance ORM
         $em = $this->getDoctrine()->getManager();
 
         // Enregistrement de l'utilisateur
         $em->persist($newUser);
         $em->flush();
 
-        echo "L'utilisateur a bien été créé.";
+
+        ?>
+            <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Succès!</strong> L'utilisateur a bien été créé.
+            </div>
+        <?php
+
         return $this->render('isitechphpMainBundle:Default:login.html.twig');
     }
 
