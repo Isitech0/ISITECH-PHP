@@ -26,7 +26,7 @@ class AdminController extends Controller
         return $repository->findAll();
     }
     /**
-     * @Route("/admin")
+     * @Route("/admin/removeuser")
      * @Template()
      */
     public function removeUser($id){
@@ -41,7 +41,7 @@ class AdminController extends Controller
         //pareilavec fonction danscontroller User
     }
     /**
-     * @Route("/admin")
+     * @Route("/admin/addproduct")
      * @Template()
      */
     public function addproduct($name,$price,$desc){
