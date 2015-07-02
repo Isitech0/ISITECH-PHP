@@ -52,6 +52,7 @@
 
                 {% if user is defined %}
                     <li><a href="{{ path('login') }}">Se déconnecter</a></li>
+                    <a href="{{ path('articles') }}">Drogues Store</a></li>
                 {% else %}<li><a href="{{ path('login') }}">Se connecter</a></li> <li>
                     <a href="{{ path('register') }}">S'enregistrer</a></li>
                 {% endif %}
