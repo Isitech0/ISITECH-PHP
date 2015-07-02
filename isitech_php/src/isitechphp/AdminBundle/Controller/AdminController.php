@@ -16,7 +16,6 @@ class AdminController extends Controller
     public function indexAction()
     {
         return $this->render('isitechphpAdminBundle:Admin:index.html.twig', array('utilisateurs' => $this->showUsers()));
-
     }
 
     public function showUsers(){
@@ -25,6 +24,23 @@ class AdminController extends Controller
 
         return $repository->findAll();
     }
+
+    /**
+     * @Route("/admin/articles", name="articles")
+     * @Template()
+     */
+    public function articlesAction()
+    {
+        return $this->render('isitechphpAdminBundle:Admin:articles.html.twig', array('articles' => $this->showArticles()));
+    }
+
+    public function showArticles(){
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Article');
+
+        return $repository->findAll();
+    }
+
     /**
      * @Route("/admin/removeuser")
      * @Template()
