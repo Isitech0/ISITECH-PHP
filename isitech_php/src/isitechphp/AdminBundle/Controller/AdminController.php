@@ -10,12 +10,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin")
+     * @Route("/admin/users", name="users")
      * @Template()
      */
-    public function indexAction()
+    public function usersAction()
     {
-        return $this->render('isitechphpAdminBundle:Admin:index.html.twig', array('utilisateurs' => $this->showUsers()));
+        return $this->render('isitechphpAdminBundle:Admin:users.html.twig', array('utilisateurs' => $this->showUsers()));
     }
 
     public function showUsers(){
