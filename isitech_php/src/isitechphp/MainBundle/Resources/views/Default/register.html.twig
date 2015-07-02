@@ -2,36 +2,46 @@
 
 {% block body %}
 
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+    <!-- All the files that are required -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+    <!-- Where all the magic happens -->
+    <!-- LOGIN FORM -->
+    <div class="text-center" style="padding:50px 0">
+        <div class="logo">login</div>
+        <!-- Main Form -->
+        <div class="login-form-1">
+            <form id="register" action='register_db' method='POST' class="text-left">
+                <div class="login-form-main-message"></div>
+                <div class="main-login-form">
+                    <div class="login-group">
+                        <div class="form-group">
+                            <label for="lg_username" class="sr-only">Email</label>
+                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_username" class="sr-only">Email</label>
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prenom">
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_username" class="sr-only">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_password" class="sr-only">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        </div>
 
-<form id='register' action='register_db' method='post'
-      accept-charset='UTF-8'>
-    <fieldset >
-        <legend>Register</legend>
-        <input type='hidden' name='submitted' id='submitted' value='1'/>
-        <label for='name' >Nom : </label>
-        <input type='text' name='lastname' id='lastname' maxlength="50" />
-        <label for='username' >Prenom :</label>
-        <input type='text' name='firstname' id='firstname' maxlength="50" />
-        <label for='email' >Email :</label>
-        <input type='text' name='email' id='email' maxlength="50" />
+                    </div>
+                    <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                </div>
+            </form>
+        </div>
+        <!-- end:Main Form -->
+    </div>
 
-
-        <label for='password' >Mot de passe :</label>
-        <input type='password' name='password' id='password' maxlength="50" />
-        <input type='submit' name='Submit' value='Submit' />
-
-    </fieldset>
-</form>
-
-</body>
-</html>
 
 {% endblock %}

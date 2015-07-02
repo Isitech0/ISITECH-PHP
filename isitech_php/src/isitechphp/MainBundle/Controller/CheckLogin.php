@@ -152,4 +152,15 @@ class CheckLogin extends Controller
         return $this->render('isitechphpMainBundle:Default:login.html.twig');
     }
 
+    /**
+     * Example logout
+     * @Route("/logout", name="logout")
+     * @return Response
+     */
+    public function logout()
+    {
+        $session->invalidate();
+        return $this->render('isitechphpMainBundle:Default:login.html.twig');
+    }
+
     }
