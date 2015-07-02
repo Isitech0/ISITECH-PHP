@@ -118,4 +118,62 @@ class ArticleController extends Controller {
     private function is_undefined(&$test) {
         return isset($test) && !is_null($test);
     }
+
+    /**
+     * Example article_add
+     * @Route("/article_add", name="articleadd")
+     * @return Response
+     */
+    public function article_add()
+    {
+        return $this->render('isitechphpMainBundle:Default:ArticleAdd.html.twig');
+    }
+
+    /**
+     * Example article_db
+     * @Route("/article_db", name="articledb")
+     * @return Response
+     */
+    public function article_db()
+    {
+
+        $newArticle = new Article();
+        $newArticle->setNom(trim($_POST['nom']));
+        $newArticle->setPrix(trim (trim($_POST['prix'])));
+        $newArticle->setDescription(trim($_POST['description']));
+
+        $currentArticle = $_POST['nom'];
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Article');
+        $compareArticle = $repository->findOneBy(array('nom' => $currentArticle));
+
+        if ($compareArticle != Null)
+        {
+
+            ?>
+            <div class="alert alert-danger fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Erreur!</strong> Cet article existe déjà!
+            </div>
+            <?php
+
+            return $this->render('isitechphpMainBundle:Default:ArticleAdd.html.twig');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        // Enregistrement de l'utilisateur
+        $em->persist($newArticle);
+        $em->flush();
+
+
+        ?>
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Succès!</strong> L'article a bien été créé.
+        </div>
+        <?php
+
+        return $this->render('isitechphpMainBundle:Default:ArticleAdd.html.twig');
+    }
 }
