@@ -122,11 +122,11 @@ class Article
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     * @return Article
-     */
+ * Set description
+ *
+ * @param string $description
+ * @return Article
+ */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -137,10 +137,36 @@ class Article
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
         return $this->description;
     }
+
+
+    /**
+     * Set description
+     *
+     * @param string $urlImage
+     * @return string
+     */
+    public function setUrlImage($urlImage)
+    {
+        $this->urlImage = $urlImage;
+
+        return $this;
+    }
+
+    /**
+     * Get urlImage
+     *
+     * @return string
+     */
+    public function getUrlImage()
+    {
+        return $this->urlImage;
+    }
+
+
 }

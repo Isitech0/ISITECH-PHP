@@ -24,6 +24,18 @@ class DefaultController extends Controller
      */
     public function homepage()
     {
-        return $this->render('isitechphpMainBundle:Default:index.html.twig');
+        return $this->render('isitechphpMainBundle:Default:index.html.twig', array('articles' => $this->selectArticle()));
+    }
+
+
+    /**
+     * Retroune tous les articles de la BDD
+     */
+    private function selectArticle()
+    {
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Article');
+
+        return $repository->findAll();
     }
 }

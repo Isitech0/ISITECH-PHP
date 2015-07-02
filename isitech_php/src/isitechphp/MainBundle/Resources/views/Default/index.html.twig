@@ -5,9 +5,8 @@
 
     <!-- Jumbotron Header -->
     <header class="jumbotron hero-spacer">
-        <h1>A Warm Welcome!!</h1>
-        <p>Lorem ipsum dolor  sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-        <p><a class="btn btn-primary btn-large">Call to action!</a>
+        <h1>Bienvenue sur notre site</h1>
+        <p>Ce site a pour but de présenter les différentes drogues référencées dans le monde. Il permet également lorsque vous êtes membre d'échanger sur les différents produits. Vous pourrez laisser des commentaires.</p>
         </p>
     </header>
 
@@ -19,7 +18,7 @@
     <!-- Title -->
     <div class="row">
         <div class="col-lg-12">
-            <h3>Latest Features</h3>
+            <h3>Les différentes drogues</h3>
         </div>
     </div>
     <!-- /.row -->
@@ -27,57 +26,18 @@
     <!-- Page Features -->
     <div class="row text-center">
 
+    {% for article in articles %}
         <div class="col-md-3 col-sm-6 hero-feature">
             <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
+                <h3>{{ article.nom }}</h3>
+                <img src={{ article.urlImage }} alt="Image" class="img-responsive center-block">
                 <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
+
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
 
     </div>
     <!-- /.row -->
