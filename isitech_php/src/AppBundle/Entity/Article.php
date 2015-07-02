@@ -47,6 +47,9 @@ class Article
      * @ORM\OneToMany(targetEntity="Commentaire",mappedBy="commentaire")
      * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
      */
+
+    // variable permettant de faire le lien avec l'entité commentaire
+    // un article peut avoir plusieurs commentaire
     private $commentaire;
 
     /**
@@ -54,9 +57,10 @@ class Article
      *
      * @ORM\Column(name="urlImage", type="text",nullable=true)
      */
+    // permet de stocker l url d une image
     private $urlImage;
 
-
+    // instancie une collection de commentaire
     public function __construct()
     {
         $this->commentaire=new ArrayCollection();

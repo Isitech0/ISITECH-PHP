@@ -35,7 +35,7 @@ class Commentaire
      */
     private $date;
 
-
+    // permet de faire le lien avec l entity utilisateur un commentaire appartient a un seul utilisateur
     /**
      * @var integer
      * @ORM\ManyToOne(targetEntity="Utilisateur")
@@ -43,6 +43,8 @@ class Commentaire
      */
     private $user;
 
+
+    // permet de faire le lien avec l entity article un commentaire correspond a un seul article
     /**
      * @var integer
      * @ORM\ManyToOne(targetEntity="Article")
@@ -51,6 +53,7 @@ class Commentaire
     private $article;
 
 
+    // instancie un utilisateur et un article
     public function __construct(){
         $this->user = new Utilisateur();
         $this->article =new Article();

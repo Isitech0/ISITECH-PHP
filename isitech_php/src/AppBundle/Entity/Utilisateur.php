@@ -49,16 +49,13 @@ class Utilisateur
      */
     private $password;
 
+    // fait le lien avec l entity droit. un utilisateur a un et un seul droit
     /**
      * @ORM\ManyToOne(targetEntity="Droit", inversedBy="droit")
      * @ORM\JoinColumn(name="droit_id", referencedColumnName="id", nullable=false)
      */
     private $droit;
 
-
-    public function __construct()
-    {
-    }
 
     /**
      * Get id

@@ -21,6 +21,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DaoGeneratorController  extends Controller {
+
+    // lance toutes les fonctions qui permettent de remplir la base
     /**
      * @Route("/generate")
      * @Template()
@@ -35,6 +37,8 @@ class DaoGeneratorController  extends Controller {
         return array('DONE !');
     }
 
+
+    // ajoute des droits à la base
     /**
      * Créer des Droits
      */
@@ -69,6 +73,7 @@ class DaoGeneratorController  extends Controller {
         }
     }
 
+    // ajoute des articles à la base
     /**
      * Créer un article
      */
@@ -125,7 +130,7 @@ class DaoGeneratorController  extends Controller {
         }
 
     }
-
+    // ajoute des utilisateurs en base
     /**
      * @return Response
      */
@@ -184,6 +189,7 @@ class DaoGeneratorController  extends Controller {
 
 }
 
+    // ajoute des commentaires en base
     private function createCommentaire()
     {
         $newcom = new Commentaire();

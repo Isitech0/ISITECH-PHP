@@ -29,6 +29,7 @@ class Droit
      */
     private $nom;
 
+    // defini le niveau de droits
     /**
      * @var integer
      *
@@ -36,12 +37,16 @@ class Droit
      */
     private $priorite;
 
+
+    // permet de faire le lien avec l entity utilisateur. un droit a 0 ou plusieurs utilisateurs
     /**
      *
      * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="droit")
      */
     private $utilisateur;
 
+
+    // instancie une collection d utilisateur
     public function __construct() {
         $this->utilisateur = new ArrayCollection();
     }
