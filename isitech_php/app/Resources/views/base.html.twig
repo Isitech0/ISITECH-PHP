@@ -53,16 +53,15 @@
                 <!-- Si l'utilisateur est connecté, lui afficher le bouton des articles (drogues store)
                 et la possibilité de se déconnecté alors -->
                 {% if (app.session.get('user')) is defined %}
+                    <li><a href="{{ path('articles') }}">Drogues Store</a></li>
+                    <li><a href="#">Contact</a></li>
                     <li><a href="{{ path('login') }}">Se déconnecter</a></li>
-                    <a href="{{ path('articles') }}">Drogues Store</a></li>
-
                  <!-- Sinon lui proposer de s'enregistrer et de se connecter -->
                 {% else %}<li><a href="{{ path('login') }}">Se connecter</a></li> <li>
                     <a href="{{ path('register') }}">S'enregistrer</a></li>
+                    <li><a href="#">Contact</a></li>
                 {% endif %}
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
