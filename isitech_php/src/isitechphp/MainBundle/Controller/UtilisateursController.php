@@ -2,6 +2,7 @@
 
 namespace isitechphp\MainBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Session\Session;
 use AppBundle\Entity\Utilisateur;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,4 +38,50 @@ class UtilisateursController extends Controller
 
         return $repository->findAll();
     }
+
+    /**
+     * Example user_information
+     * @Route("/user_information", name="userinformation")
+     * @return Response
+     */
+    public function user_information()
+    {
+        return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+    }
+
+    /**
+     * Example user_change
+     * @Route("/user_change", name="userchange")
+     * @return Response
+     */
+    public function user_change()
+    {
+
+
+        $session = new Session();
+        $user = $session->get('user');
+
+
+
+        $utlisateur = new Utilisateur();
+        $em = $this->getDoctrine()->getManager();
+        $utlisateur = $em->getRepository('AppBundle:Utilisateur')->find($user->getId());
+        $utlisateur->setNom(trim($_POST['nom']));
+        $utlisateur->setPrenom(trim($_POST['prenom']));
+
+        $em->flush();
+
+        $user->setNom($utlisateur->GetNom());
+        $user->setPrenom($utlisateur->GetPrenom());
+
+        ?>
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Succès!</strong> L'utilisateur a été modifié.
+        </div>
+        <?php
+
+        return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+    }
+
 }
