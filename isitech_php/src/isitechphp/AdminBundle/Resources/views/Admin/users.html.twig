@@ -26,11 +26,14 @@
                         <td>{{ usr.mail }}</td>
                         <td>{{ usr.password }}</td>
                         <td>{{ usr.droit.nom }}</td>
+                        {{ render(controller('isitechphpAdminBundle:Form:new')) }}
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+
+
 
 {% endblock %}

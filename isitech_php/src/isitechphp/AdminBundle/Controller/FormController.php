@@ -2,21 +2,26 @@
 namespace isitechphp\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Acme\TaskBundle\Entity\Task;
+use isitechphp\AdminBundle\Entity\Form;
 use Symfony\Component\HttpFoundation\Request;
+
+use AppBundle\Entity\Article;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class FormController extends Controller
 {
+    /**
+     * @Route("/admin/form", name="new")
+     * @Template()
+     */
     public function newAction(Request $request)
     {
-        // crée une tâche et lui donne quelques données par défaut pour cet exemple
-        $task = new Task();
-        $task->setTask('Write a blog post');
-        $task->setDueDate(new \DateTime('tomorrow'));
+        $task = new Form();
+        $task->setForm('foobar');
 
         $form = $this->createFormBuilder($task)
-            ->add('task', 'text')
-            ->add('dueDate', 'date')
+            ->add('form', 'text')
             ->add('save', 'submit')
             ->getForm();
 
@@ -25,3 +30,4 @@ class FormController extends Controller
         ));
     }
 }
+

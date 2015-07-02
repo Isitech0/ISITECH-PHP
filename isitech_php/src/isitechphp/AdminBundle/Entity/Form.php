@@ -1,27 +1,16 @@
 <?php
 namespace isitechphp\AdminBundle\Entity;
 
-class Task
+class Form
 {
-protected $task;
+protected $form;
 
-protected $dueDate;
-
-public function getTask()
+public function getForm()
 {
-return $this->task;
+return $this->form;
 }
-public function setTask($task)
+public function setForm($form)
 {
-$this->task = $task;
-}
-
-public function getDueDate()
-{
-return $this->dueDate;
-}
-public function setDueDate(\DateTime $dueDate = null)
-{
-$this->dueDate = $dueDate;
+$this->form = $form;
 }
 }
