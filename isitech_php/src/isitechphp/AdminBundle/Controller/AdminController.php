@@ -74,19 +74,20 @@ class AdminController extends Controller
 
     }
     /**
-     * @Route("/admin/removeuser/{idUser}", name="removeuser")
+     * @Route("/admin/removeuser/{iduser}", name="removeuser")
      * @Template()
      */
-    public function removeUser($idUser)
+    public function removeuserAction($iduser)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('AppBundle:Utilisateur')->find($idUser);
+        $user = $em->getRepository('AppBundle:Utilisateur')->find($iduser);
         if (!$user) {
             throw $this->createNotFoundException(
-                'Aucun Utilisateur trouvé pour cet id : '.$idUser
+                'Aucun Utilisateur trouvé pour cet id : '.$iduser
             );
         }
         $em->remove($user);
         $em->flush();
+        return $this->redirect($this->generateUrl('userscontrol'));
     }
  }

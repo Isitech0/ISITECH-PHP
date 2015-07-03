@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row-fluid">
-            <h1>Users<h1>
+            <h1>Users</h1>
         </div>
         <div class="row-fluid">
             <table class="table">
@@ -26,7 +26,8 @@
                         <td>{{ usr.mail }}</td>
                         <td>{{ usr.password }}</td>
                         <td>{{ usr.droit.nom }}</td>
-                        <td>{{ render(controller('isitechphpAdminBundle:Form:new', { 'id':  usr.id } )) }}</td>
+                        <td><a href ="{{ path('removeuser',{'iduser':usr.id}) }}">suprimer</a></td>
+
                     </tr>
                 {% endfor %}
                 </tbody>
