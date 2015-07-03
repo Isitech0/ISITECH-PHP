@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Utilisateur
@@ -56,7 +57,19 @@ class Utilisateur
      */
     private $droit;
 
+    /**
+     * Liste des commentaires de l'Article
+     * @ORM\OneToMany(targetEntity="Commentaire",mappedBy="commentaire")
+     * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
+     */
+    private $commentaire;
 
+
+    // instancie une collection de commentaire
+    public function __construct()
+    {
+        $this->commentaire=new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -181,4 +194,30 @@ class Utilisateur
     {
         return $this->droit;
     }
+
+
+
+    /**
+     * Set setDroit
+     *
+     * @param string $commentaire
+     * @return Utilisateur
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+    /**
+     * Retourner la liste des commentaires de l'Article
+     * @return ArrayCollection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+
+
 }

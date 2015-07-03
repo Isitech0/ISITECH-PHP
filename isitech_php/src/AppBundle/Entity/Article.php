@@ -50,14 +50,7 @@ class Article
      */
     private $commentaire;
 
-    /**
-     * Retourner la liste des commentaires de l'Article
-     * @return ArrayCollection
-     */
-    public function getCommentaire()
-    {
-        return $this->commentaire;
-    }
+
 
     /**
      * @var string
@@ -66,6 +59,10 @@ class Article
      */
     // permet de stocker l url d une image
     private $urlImage;
+
+
+
+
 
     // instancie une collection de commentaire
     public function __construct()
@@ -173,6 +170,29 @@ class Article
     public function getUrlImage()
     {
         return $this->urlImage;
+    }
+
+
+    /**
+     * Set setDroit
+     *
+     * @param string $commentaire
+     * @return Utilisateur
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Retourner la liste des commentaires de l'Article
+     * @return ArrayCollection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 
 
