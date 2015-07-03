@@ -1,0 +1,37 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row-fluid"><h1>Compte utilisateur<h1></div>
+
+        <div class="row-fluid"><table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Email</th>
+                        <th>Password</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for utilisateur in utilisateurs %}
+                        {#{{ include('isitechphpMainBundle:Default:ArticleDetails.html.twig', {'article': article}) }}#}
+                        <tr>
+                            <td>{{ utilisateur.id }}</td>
+                            <td>{{ utilisateur.nom }}</td>
+                            <td>{{ utilisateur.prenom }}</td>
+                            <td>{{ utilisateur.mail }}</td>
+                            <td>{{ utilisateur.password }}</td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table></div>
+    </div>
+
+    {#<div id="sidebar">#}
+    {#{{ render(controller('isitechphpMainBundle:Default:recentArticles', { 'max': 3 })) }}#}
+    {#</div>#}
+{% endblock %}

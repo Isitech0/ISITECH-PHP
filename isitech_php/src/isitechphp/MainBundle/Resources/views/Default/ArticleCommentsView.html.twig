@@ -1,0 +1,299 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{#DEBUT FEUILLE DE STYLE FICHE ARTICLE #}
+<style>
+    .conversation-wrap
+    {
+        box-shadow: -2px 0 3px #ddd;
+        padding:0;
+        max-height: 400px;
+        overflow: auto;
+    }
+    .conversation
+    {
+        padding:5px;
+        border-bottom:1px solid #ddd;
+        margin:0;
+
+    }
+
+    .message-wrap
+    {
+        box-shadow: 0 0 3px #ddd;
+        padding:0;
+
+    }
+    .msg
+    {
+        padding:5px;
+        /*border-bottom:1px solid #ddd;*/
+        margin:0;
+    }
+    .msg-wrap
+    {
+        padding:10px;
+        max-height: 400px;
+        overflow: auto;
+
+    }
+
+    .time
+    {
+        color:#bfbfbf;
+    }
+
+    .send-wrap
+    {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding:10px;
+        /*background: #f8f8f8;*/
+    }
+
+    .send-message
+    {
+        resize: none;
+    }
+
+    .highlight
+    {
+        background-color: #f7f7f9;
+        border: 1px solid #e1e1e8;
+    }
+
+    .send-message-btn
+    {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+
+        border-bottom-right-radius: 0;
+    }
+    .btn-panel
+    {
+        background: #f7f7f9;
+    }
+
+    .btn-panel .btn
+    {
+        color:#b8b8b8;
+
+        transition: 0.2s all ease-in-out;
+    }
+
+    .btn-panel .btn:hover
+    {
+        color:#666;
+        background: #f8f8f8;
+    }
+    .btn-panel .btn:active
+    {
+        background: #f8f8f8;
+        box-shadow: 0 0 1px #ddd;
+    }
+
+    .btn-panel-conversation .btn,.btn-panel-msg .btn
+    {
+
+        background: #f8f8f8;
+    }
+    .btn-panel-conversation .btn:first-child
+    {
+        border-right: 1px solid #ddd;
+    }
+
+    .msg-wrap .media-heading
+    {
+        color:#003bb3;
+        font-weight: 700;
+    }
+
+
+    .msg-date
+    {
+        background: none;
+        text-align: center;
+        color:#aaa;
+        border:none;
+        box-shadow: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+
+    body::-webkit-scrollbar {
+        width: 12px;
+    }
+
+
+    /* Let's get this party started */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        /*        -webkit-border-radius: 10px;
+                border-radius: 10px;*/
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        /*        -webkit-border-radius: 10px;
+                border-radius: 10px;*/
+        background:#ddd;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: #ddd;
+    }
+
+</style>
+{#FIN FEUILLE DE STYLE FICHE ARTICLE #}
+
+{#DEBUT FEUILLE DE STYLE COMMENTAIRE #}
+<style>
+    /*@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);*/
+
+    body {padding-top:50px;}
+
+    .box {
+        border-radius: 3px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        padding: 10px 25px;
+        text-align: right;
+        display: block;
+        margin-top: 60px;
+    }
+    .box-icon {
+        background-color: #57a544;
+        border-radius: 50%;
+        display: table;
+        height: 100px;
+        margin: 0 auto;
+        width: 100px;
+        margin-top: -61px;
+    }
+    .box-icon span {
+        color: #fff;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .info h4 {
+        font-size: 26px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .info > p {
+        color: #717171;
+        font-size: 16px;
+        padding-top: 10px;
+        text-align: justify;
+    }
+    .info > a {
+        background-color: #03a9f4;
+        border-radius: 2px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        color: #fff;
+        transition: all 0.5s ease 0s;
+    }
+    .info > a:hover {
+        background-color: #0288d1;
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+        color: #fff;
+        transition: all 0.5s ease 0s;
+    }
+</style>
+{#FIN FEUILLE DE STYLE COMMENTAIRE #}
+    {#{% if(note is defined) %}#}
+        {#{{ dump(note) }}#}
+    {#{% endif %}#}
+
+    {% if(note is defined) and (note is not null)  %}
+        {{ include('isitechphpMainBundle:Default:AlertBoxView.html.twig', {'note': note} ) }}
+    {% endif %}
+
+    {# DEBUT DE LA FICHE ARTICLE #}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-icon">
+                        <span class="fa fa-4x">
+                            <img class="media-object img-circle" src="{{ articles.urlImage }}">
+                        </span>
+                    </div>
+                    <div class="info container-fluid">
+                        <div class="panel panel-pricing">
+                            <div class="panel-heading">
+                                <h4 class="text-center">{{ articles.nom }}</h4>
+                            </div>
+                            <div class="panel-body text-center">
+                            </div>
+                            <ul class="list-group text-center">
+                                <li class="list-group-item"><i class="fa"></i> {{ articles.description }}</li>
+                                <li class="list-group-item"><i class="fa"></i>
+                                    <p><strong>Prix : {{ articles.prix }} €  / gr</strong></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# FIN DE LA FICHE ARTICLE #}
+
+    {# DEBUT DES COMMENTAIRES #}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="message-wrap">
+                <div class="msg-wrap">
+                    {% for comment in comments %}
+                        <div class="media msg">
+                            <a class="pull-left" href="#">
+                                {# TODO Mettre la photo de profile #}
+                                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="data:image/jpeg;base64,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">
+                            </a>
+                            <div class="media-body">
+                                <small class="pull-right time"><i class="fa fa-clock-o"></i>{{ comment.date|date('Y-m-d H:i:s') }}</small>
+
+                                <h5 class="media-heading">{{ comment.user.nom }}.{{ comment.user.prenom }}</h5>
+                                <small class="col-lg-10"> #{{ comment.id }} <br>{{ comment.note }}</small>
+
+                                {# ADMIN, Si c'est une Session Administrateur on ajoute le bouton supprimer #}
+                                {% if( ((app.session.get('user').droit) is defined) and
+                                ( (app.session.get('user').droit.priorite) == 0) and
+                                ( (app.session.get('user').droit.priorite) is not null) ) %}
+                                    <div class="row text-center">
+                                        <a class="btn btn-warning" href="{{ path('supprimercommentaire', { 'commentaire': comment.id } ) }}">Supprimer</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {# LOGGED USER, Si l'utilisateur est connecté on l'autorise à saisir un commentaire #}
+                {% if ( (app.session.get('user').nom) is defined ) and
+                ( (app.session.get('user').droit.priorite) is not null) %}
+                <form id='register' action=" {{ path('postercommentaire', { 'article': articles.id } ) }}" method='post'
+                          accept-charset='UTF-8'>
+                    <fieldset >
+                        <div class="send-wrap ">
+                            <textarea class="form-control send-message" name="commentBox" id="commentBox" rows="3" placeholder="Ecrire un commentaire..."></textarea>
+                        </div>
+                        <div class="btn-panel">
+                            <button type='submit' name='Submit' value='Submit' class="btn btn-lg btn-block" role="button"><i class="fa fa-plus"></i>Post</button>
+                        </div>
+                    </fieldset>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {# FIN DES COMMENTAIRES #}
+{% endblock %}

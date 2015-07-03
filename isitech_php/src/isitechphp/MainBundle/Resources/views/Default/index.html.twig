@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>.fixedsize{height:200px;width:200px;}</style>
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron hero-spacer">
+        <h1>Bienvenue sur notre site</h1>
+        <p>Ce site a pour but de présenter les différentes drogues référencées dans le monde. Il permet également lorsque vous êtes membre d'échanger sur les différents produits. Vous pourrez laisser des commentaires.</p>
+        </p>
+    </header>
+
+
+
+    <hr>
+
+
+    <!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Les différentes drogues</h3>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Page Features -->
+    <div class="row text-center">
+
+    {% for article in articles %}
+        <div class="col-md-3 col-sm-5 hero-feature">
+            <div class="thumbnail fixedsize">
+                <h3>{{ article.nom }}</h3>
+                <img src="{{ article.urlImage }}" alt="Image {{ article.nom }}" class="img-responsive center-block">
+                <div class="caption">
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+    <!-- /.row -->
+{% endblock %}

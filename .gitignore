@@ -1,1 +1,6 @@
+/.idea/*
 .idea/workspace.xml
+isitech_php/web/config.php
+isitech_php/app/config/parameters.yml
+isitech_php/app/check.php
+isitech_php/web/bundle/*

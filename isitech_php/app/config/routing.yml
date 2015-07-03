@@ -1,5 +1,10 @@
-sample_admin:
-    resource: "@SampleAdminBundle/Controller/"
+isitechphp_main:
+    resource: "@isitechphpMainBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+isitechphp_admin:
+    resource: "@isitechphpAdminBundle/Controller/"
     type:     annotation
     prefix:   /
 

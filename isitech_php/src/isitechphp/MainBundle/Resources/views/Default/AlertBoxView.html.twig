@@ -1,0 +1,33 @@
+{# Si la note est définie #}
+{% if(note is defined) and (note.type is not null) %}
+    {% if( note.type == "warning")  %}
+        <div class="alert alert-warning fade in alert-message">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Warning!</strong> {{ note.message }}.
+        </div>
+    {% elseif( note.type == "danger")  %}
+        <div class="alert alert-danger fade in alert-message">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> {{ note.message }}.
+        </div>
+    {% elseif( note.type == "success")  %}
+        <div class="alert alert-success fade in alert-message">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Success!</strong> {{ note.message }}.
+        </div>
+    {% elseif( note.type == "info")  %}
+        <div class="alert alert-info fade in alert-message">
+            <a id="alert-message" href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Note!</strong> {{ note.message }}.
+        </div>
+    {% endif %}
+
+    <script>
+        window.setTimeout(function() {
+            $(".alert-message").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+            });
+        }, 5000);
+    </script>
+
+{% endif %}

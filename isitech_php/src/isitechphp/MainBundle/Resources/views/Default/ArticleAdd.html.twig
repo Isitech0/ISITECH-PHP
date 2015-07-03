@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        body {padding-top:20px;}
+    </style>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="well well-sm">
+                    <form id="register" action='article_db' method='POST' class="form-horizontal">
+                        <fieldset>
+                            <legend class="text-center">Ajouter un article</legend>
+
+                            <!-- Name input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Nom</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required/>
+                                </div>
+                            </div>
+
+                            <!-- Email input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="email">Prix</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="prix" name="prix" placeholder="Prix" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="email">URL</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="url" name="url" placeholder="URL" >
+                                </div>
+                            </div>
+
+                            <!-- Message body -->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="message">Description</label>
+                                <div class="col-md-9">
+                                    <textarea type="text" class="form-control" id="description" name="description" placeholder="Description" required/></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Form actions -->
+                            <div class="form-group">
+                                <div class="col-md-12 text-right">
+                                    <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- All the files that are required -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+{% endblock %}

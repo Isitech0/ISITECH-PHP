@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# DEBUT FORMULAIRE D'ENREGISTREMENT #}
+    {% if(note is defined) and (note is not null)  %}
+        {#{{ dump(note) }}#}
+        {{ include('isitechphpMainBundle:Default:AlertBoxView.html.twig', {'note': note} ) }}
+    {% endif %}
+
+    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">S'enregistrer</div>
+                <div style="float:right; font-size: 85%; position: relative; top:-10px">
+                    <a id="signinlink" href="{{ path('login') }}">Se Connecter</a>
+                </div>
+            </div>
+            <div class="panel-body" >
+                <form id="signupform" action="{{ path('userchange') }}" method='POST' class="form-horizontal" role="form">
+
+                    <div id="signupalert" style="display:none" class="alert alert-danger">
+                        <p>Error:</p>
+                        <span></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-md-3 control-label">Email</label>
+                        <div class="col-md-9">
+                            {{ (app.session.get('user').mail) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname" class="col-md-3 control-label">Nom</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="nom" name="nom" value='{{ (app.session.get('user').nom) }}' placeholder="Nom" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname" class="col-md-3 control-label">Prenom</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="prenom" name="prenom" value='{{ (app.session.get('user').prenom) }}' placeholder="Prenom" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Ancien mot de passe</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" id="oldPassword" name="old_password" placeholder="Mot de passe" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="icode" class="col-md-3 control-label">Nouveau mot de passe</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" placeholder="Nouveau mot de passe" id="new_password" name="new_password" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="icode" class="col-md-3 control-label">Confirmer le nouveau mot de passe</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" placeholder="Confirmer le nouveau mot de passe" id="confirm_password" name="confirm_password" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <button id="btn-signup" type="submit"  class="btn btn-info login-button"><i class="icon-hand-right"></i> &nbsp S'enregister</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {# FIN FORMULAIRE D'ENREGISTREMENT #}
+
+    {# DEBUT Vérification des mots de passe identiques #}
+    <script>
+        var password = document.getElementById("password")
+                , confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
+    {# FIN Vérification des mots de passe identiques #}
+{% endblock %}
