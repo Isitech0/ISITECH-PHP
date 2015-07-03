@@ -56,16 +56,48 @@ class UtilisateursController extends Controller
      */
     public function user_change()
     {
-
-
         $session = new Session();
         $user = $session->get('user');
-
-
-
         $utlisateur = new Utilisateur();
         $em = $this->getDoctrine()->getManager();
         $utlisateur = $em->getRepository('AppBundle:Utilisateur')->find($user->getId());
+
+        if(trim($_POST['old_password']) != Null)
+        {
+            $old_password = trim (hash('sha256', trim($_POST['old_password'])));
+
+            if($old_password != $session->get('user')->getPassword())
+            {
+                echo 'ko!!';
+                return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+            }
+
+            if($old_password == $session->get('user')->getPassword())
+            {
+                if(trim($_POST['new_password']) == Null)
+                {
+                    echo "Le nouveau mdp na pas ete renseigner!";
+                    return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+                }
+                if(trim($_POST['confirm_password']) == Null)
+                {
+                    echo "Le nouveau mdp na pas ete confirmer!";
+                    return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+                }
+
+                if(trim($_POST['new_password']) == trim($_POST['confirm_password']))
+                {
+                    echo "les mdp sont identiques!";
+                    $utlisateur->setPassword(trim (hash('sha256', trim($_POST['confirm_password']))));
+                    $user->setPassword($utlisateur->GetPassword());
+                }
+            }
+
+        }
+
+        //$session = new Session();
+
+
         $utlisateur->setNom(trim($_POST['nom']));
         $utlisateur->setPrenom(trim($_POST['prenom']));
 
