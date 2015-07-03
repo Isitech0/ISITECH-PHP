@@ -10,6 +10,7 @@ namespace isitechphp\MainBundle\Controller;
 
 use AppBundle\Entity\Droit;
 use AppBundle\Entity\Utilisateur;
+use AppBundle\Entity\AlertBootStrap;
 //use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,8 +83,10 @@ class CheckLogin extends Controller
             }
             else
             {
-                echo "Le mot de passe est incorrecte";
-                return $this->render('isitechphpMainBundle:Default:login.html.twig');
+                $newnote = new AlertBootStrap();
+                $newnote->setMessage("Le mot de passe est incorrecte");
+                $newnote->setType("warning");
+                return $this->render('isitechphpMainBundle:Default:login.html.twig', array('note' => $newnote));
             }
         }
 
@@ -121,6 +124,9 @@ class CheckLogin extends Controller
      */
     public function register_db()
     {
+        $newnote = new AlertBootStrap();
+
+
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Droit');
         $advert = $repository->findOneBy(array('id' => '2'));
@@ -140,14 +146,10 @@ class CheckLogin extends Controller
         if ($compareMail != Null)
         {
 
-            ?>
-                <div class="alert alert-danger fade in">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <strong>Erreur!</strong> L'utilisateur existe deja!
-                </div>
-            <?php
+            $newnote->setMessage("L'utilisateur existe deja!");
+            $newnote->setType("warning");
 
-            return $this->render('isitechphpMainBundle:Default:register.html.twig');
+            return $this->render('isitechphpMainBundle:Default:register.html.twig', array('note' => $newnote));
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -156,15 +158,10 @@ class CheckLogin extends Controller
         $em->persist($newUser);
         $em->flush();
 
+        $newnote->setMessage("L'utilisateur a bien été créé");
+        $newnote->setType("success");
 
-        ?>
-            <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Succès!</strong> L'utilisateur a bien été créé.
-            </div>
-        <?php
-
-        return $this->render('isitechphpMainBundle:Default:login.html.twig');
+        return $this->render('isitechphpMainBundle:Default:login.html.twig', array('note' => $newnote));
     }
 
     /**
