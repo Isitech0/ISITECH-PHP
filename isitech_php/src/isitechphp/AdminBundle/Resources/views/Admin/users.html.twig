@@ -26,7 +26,12 @@
                         <td>{{ usr.mail }}</td>
                         <td>{{ usr.password }}</td>
                         <td>{{ usr.droit.nom }}</td>
-                        <td>{{ render(controller('isitechphpAdminBundle:Form:new')) }}</td>
+                        {#<td>{{ render(controller('isitechphpAdminBundle:Form:supprimerutilisateur', { 'id':  '3' } )) }}</td>#}
+                        <td>
+                            <span class="pull-right buttons">
+                                <a href=" {{ path('supprimerutilisateur', { 'id': usr.id } ) }} "    role="button">Détail</a>
+                            </span>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

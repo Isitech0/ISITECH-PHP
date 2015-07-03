@@ -12,15 +12,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class FormController extends Controller
 {
     /**
-     * @Route("/admin/form", name="new")
+     * @Route("/admin/form/{id}", name="supprimerutilisateur")
      * @Template()
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id = null)
     {
+        $id = $id ? $id : 'MyBundle:ControllerName:index.html.twig';
+
         $task = new Form();
         $task->setForm('foobar');
+        $task->setIdUser($id);
 
         $form = $this->createFormBuilder($task)
+            ->add('idUser','text')
             ->add('Delete', 'submit')
             ->getForm();
 
@@ -29,4 +33,4 @@ class FormController extends Controller
         ));
     }
 }
-
+//->add('idUser', 'hidden', array('data' => 'recuperer id depuis ligne')

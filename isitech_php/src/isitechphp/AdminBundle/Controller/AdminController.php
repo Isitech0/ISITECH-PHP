@@ -52,6 +52,7 @@ class AdminController extends Controller
     public function removeUser($id){
       //  \AppBundle\Entity\ $removeUser($this);
       //  $yc = $this->get('Utilisateur');
+
         return array('name' => $id);
     }
 
@@ -81,11 +82,11 @@ class AdminController extends Controller
 
     }
 
-    public function removeProduct(){
-        //get connection
-        $conn = $this->get('database_connection');
-        //run a query
-
+    public function removeUser($idUser){
+        $em = $this->getDoctrine()->getManager();
+        $com = $em->getRepository('UserBundle:Utilisateur')->find($idUser);
+        if (!$com) {
+        }
     }
 
 
