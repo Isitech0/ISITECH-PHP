@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new isitechphp\AdminBundle\isitechphpAdminBundle(),
-            new isitechphp\UserBundle\isitechphpUserBundle(),
             new isitechphp\MainBundle\isitechphpMainBundle(),
         );
 

@@ -3,11 +3,6 @@ isitechphp_main:
     type:     annotation
     prefix:   /
 
-isitechphp_user:
-    resource: "@isitechphpUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 isitechphp_admin:
     resource: "@isitechphpAdminBundle/Controller/"
     type:     annotation
