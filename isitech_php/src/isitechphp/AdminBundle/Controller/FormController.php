@@ -17,15 +17,15 @@ class FormController extends Controller
      */
     public function newAction(Request $request, $id = null)
     {
-        $id = $id ? $id : 'MyBundle:ControllerName:index.html.twig';
+//        $id = $id ? $id : 'MyBundle:ControllerName:index.html.twig';
 
         $task = new Form();
         $task->setForm('foobar');
         $task->setIdUser($id);
 
         $form = $this->createFormBuilder($task)
-            ->add('idUser','text')
-            ->add('Delete', 'submit')
+//            ->add('idUser','text')
+            ->add('Supprimer', 'submit')
             ->getForm();
 
         return $this->render('isitechphpAdminBundle:form:form.html.twig', array(

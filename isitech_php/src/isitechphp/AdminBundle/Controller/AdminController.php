@@ -77,7 +77,8 @@ class AdminController extends Controller
      * @Route("/admin/removeuser", name="removeuser")
      * @Template()
      */
-    public function removeUser($idUser){
+    public function removeUser($idUser)
+    {
         $em = $this->getDoctrine()->getManager();
         $com = $em->getRepository('UserBundle:Utilisateur')->find($idUser);
         if (!$com) {
