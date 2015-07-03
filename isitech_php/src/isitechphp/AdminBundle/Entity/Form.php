@@ -14,12 +14,12 @@ public function setForm($form)
 {
 $this->form = $form;
 }
-        public function getIdUser()
-        {
-            return $this->idUser;
-        }
-    public function setIdUser($id)
+    public function getIdUser()
     {
-        $this->idUser = $id;
+        return $this->idUser;
     }
+public function setIdUser($id)
+{
+    $this->idUser = $id;
+}
 }
