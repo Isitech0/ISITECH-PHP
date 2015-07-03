@@ -57,18 +57,16 @@ class ArticleController extends Controller {
         $session = new Session();
         $noteSession = $session->get('note');
 
+    //      var_dump($noteSession);
+    //        var_dump(ArticleController::isundefined($noteSession));
+
         // Si une note existe on l'affiche
-        if($this->is_undefined($noteSession))
+        if(ArticleController::isundefined($noteSession))
             return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
         else {
-//            $note = new AlertBootStrap();
-//            $noteSession = cast('AlertBootStrap', $noteSession);
-//            $note->setMessage($noteSession->getMessage());
-//            $note->setType($noteSession->getType());
-
             $session->remove('note');
 
-            return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList, 'note' => $note));
+            return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList, 'note' => $noteSession));
         }
     }
 
@@ -120,14 +118,14 @@ class ArticleController extends Controller {
                 ->getRepository('AppBundle:Commentaire');
 
             $commentaireList = $repository->findByArticle(array('article_id' => $article->getId()));
+
+            // Création de l'alerte
+            $newnote = new AlertBootStrap();
+            $newnote->setMessage("Commentaire posté");
+            $newnote->setType("success");
+
+            $session->set('note', $newnote);
         }
-
-        // Création de l'alerte
-        $newnote = new AlertBootStrap();
-        $newnote->setMessage("Commentaire posté");
-        $newnote->setType("success");
-
-        $session->set('note' , $newnote);
 
        // Retourner sur la route /articlescommentaires
        return $this->redirect($this->generateUrl('articlescommentaires', array('article' => $article->getId())));
@@ -137,9 +135,19 @@ class ArticleController extends Controller {
      * Méthode pour vérifier si un objet est null
      * @param $test
      * @return bool
+     * TODO PB AVEC is_undefined pour la session
      */
     private function is_undefined(&$test) {
         return isset($test) && !is_null($test);
+    }
+
+    /**
+     * @param $test
+     * @return bool
+     * TODO PB AVEC cette méthode pour un objet classi
+     */
+    public static function isundefined($test) {
+        return empty($test) && !isset($test);
     }
 
     /**
