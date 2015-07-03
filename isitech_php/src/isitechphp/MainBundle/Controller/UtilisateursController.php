@@ -95,7 +95,14 @@ class UtilisateursController extends Controller
 
         }
 
-        //$session = new Session();
+        if(trim($_POST['old_password']) != Null OR trim($_POST['new_password']) != Null OR trim($_POST['confirm_password']) != Null)
+        {
+            if(trim($_POST['old_password']) == Null OR trim($_POST['new_password']) == Null OR trim($_POST['confirm_password']) == Null)
+            {
+                echo "Tous les champs doivent etre remplies pour changer le mot de passe!";
+                return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+            }
+        }
 
 
         $utlisateur->setNom(trim($_POST['nom']));
