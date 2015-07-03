@@ -15,22 +15,28 @@ class FormController extends Controller
      * @Route("/admin/form/{id}", name="supprimerutilisateur")
      * @Template()
      */
-    public function newAction(Request $request, $id = null)
+    public function newAction(Request $request, $idUser = null)
     {
 //        $id = $id ? $id : 'MyBundle:ControllerName:index.html.twig';
 
         $task = new Form();
         $task->setForm('foobar');
-        $task->setIdUser($id);
+        $task->setIdUser($idUser);
 
         $form = $this->createFormBuilder($task)
-//            ->add('idUser','text')
+            ->add('idUser','hidden')
             ->add('Supprimer', 'submit')
             ->getForm();
+
+        //soumission
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            return $this->redirect($this->generateUrl('removeuser', array('idUser' => $idUser)));
+        }
 
         return $this->render('isitechphpAdminBundle:form:form.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 }
-//->add('idUser', 'hidden', array('data' => 'recuperer id depuis ligne')

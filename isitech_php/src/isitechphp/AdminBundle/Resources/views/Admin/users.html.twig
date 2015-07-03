@@ -27,11 +27,6 @@
                         <td>{{ usr.password }}</td>
                         <td>{{ usr.droit.nom }}</td>
                         <td>{{ render(controller('isitechphpAdminBundle:Form:new', { 'id':  usr.id } )) }}</td>
-                        {#<td>#}
-                            {#<span class="pull-right buttons">#}
-                                {#<a href=" {{ path('supprimerutilisateur', { 'id': usr.id } ) }} "    role="button">Supprimer</a>#}
-                            {#</span>#}
-                        {#</td>#}
                     </tr>
                 {% endfor %}
                 </tbody>
