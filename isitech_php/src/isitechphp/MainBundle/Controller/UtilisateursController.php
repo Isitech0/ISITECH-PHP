@@ -4,6 +4,7 @@ namespace isitechphp\MainBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use AppBundle\Entity\Utilisateur;
+use AppBundle\Entity\AlertBootStrap;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -68,26 +69,31 @@ class UtilisateursController extends Controller
 
             if($old_password != $session->get('user')->getPassword())
             {
-                echo 'ko!!';
-                return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+                $newnote = new AlertBootStrap();
+                $newnote->setMessage("L'ancien mot de passe n'est pas correct!");
+                $newnote->setType("warning");
+                return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig', array('note' => $newnote));
             }
 
             if($old_password == $session->get('user')->getPassword())
             {
                 if(trim($_POST['new_password']) == Null)
                 {
-                    echo "Le nouveau mdp na pas ete renseigner!";
-                    return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+                    $newnote = new AlertBootStrap();
+                    $newnote->setMessage("Le nouveau mdp na pas ete renseigner!");
+                    $newnote->setType("warning");
+                    return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig', array('note' => $newnote));
                 }
                 if(trim($_POST['confirm_password']) == Null)
                 {
-                    echo "Le nouveau mdp na pas ete confirmer!";
-                    return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+                    $newnote = new AlertBootStrap();
+                    $newnote->setMessage("Le nouveau mdp na pas ete confirmer!");
+                    $newnote->setType("warning");
+                    return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig', array('note' => $newnote));
                 }
 
                 if(trim($_POST['new_password']) == trim($_POST['confirm_password']))
                 {
-                    echo "les mdp sont identiques!";
                     $utlisateur->setPassword(trim (hash('sha256', trim($_POST['confirm_password']))));
                     $user->setPassword($utlisateur->GetPassword());
                 }
@@ -99,8 +105,10 @@ class UtilisateursController extends Controller
         {
             if(trim($_POST['old_password']) == Null OR trim($_POST['new_password']) == Null OR trim($_POST['confirm_password']) == Null)
             {
-                echo "Tous les champs doivent etre remplies pour changer le mot de passe!";
-                return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+                $newnote = new AlertBootStrap();
+                $newnote->setMessage("Tous les champs doivent etre remplies pour changer le mot de passe!");
+                $newnote->setType("warning");
+                return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig', array('note' => $newnote));
             }
         }
 
@@ -113,14 +121,12 @@ class UtilisateursController extends Controller
         $user->setNom($utlisateur->GetNom());
         $user->setPrenom($utlisateur->GetPrenom());
 
-        ?>
-        <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Succès!</strong> L'utilisateur a été modifié.
-        </div>
-        <?php
 
-        return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
+        $newnote = new AlertBootStrap();
+        $newnote->setMessage("L'utilisateur a été modifié");
+        $newnote->setType("success");
+
+        return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig', array('note' => $newnote));
     }
 
 }
