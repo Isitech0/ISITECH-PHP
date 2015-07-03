@@ -209,7 +209,7 @@
 </style>
 {#FIN FEUILLE DE STYLE COMMENTAIRE #}
     {% if(note is defined) and (note is not null)  %}
-        {{ dump(note) }}
+        {#{{ dump(note) }}#}
         {{ include('isitechphpMainBundle:Default:AlertBoxView.html.twig', {'note': note} ) }}
     {% endif %}
 

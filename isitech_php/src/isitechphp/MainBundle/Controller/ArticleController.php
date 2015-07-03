@@ -7,6 +7,7 @@
  */
 namespace isitechphp\MainBundle\Controller;
 
+use AppBundle\Entity\AlertBootStrap;
 use AppBundle\Entity\Article;
 use AppBundle\Entity\Commentaire;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -44,7 +45,7 @@ class ArticleController extends Controller {
     public function selectCommentAction(Article $article)
     {
         $repository = $this->getDoctrine()
-                    ->getRepository('AppBundle:Commentaire');
+            ->getRepository('AppBundle:Commentaire');
 
         $commentaireList = $repository->findByArticle(array('article_id' => $article->getId()));
 
@@ -53,7 +54,22 @@ class ArticleController extends Controller {
 
         $article = $repository->find($article->getId());
 
-        return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
+        $session = new Session();
+        $noteSession = $session->get('note');
+
+        // Si une note existe on l'affiche
+        if($this->is_undefined($noteSession))
+            return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList ));
+        else {
+//            $note = new AlertBootStrap();
+//            $noteSession = cast('AlertBootStrap', $noteSession);
+//            $note->setMessage($noteSession->getMessage());
+//            $note->setType($noteSession->getType());
+
+            $session->remove('note');
+
+            return $this->render('isitechphpMainBundle:Default:ArticleCommentsView.html.twig', array('articles' => $article, 'comments' => $commentaireList, 'note' => $note));
+        }
     }
 
     /**
@@ -106,8 +122,15 @@ class ArticleController extends Controller {
             $commentaireList = $repository->findByArticle(array('article_id' => $article->getId()));
         }
 
+        // Création de l'alerte
+        $newnote = new AlertBootStrap();
+        $newnote->setMessage("Commentaire posté");
+        $newnote->setType("success");
+
+        $session->set('note' , $newnote);
+
        // Retourner sur la route /articlescommentaires
-       return $this->redirect($this->generateUrl('articlescommentaires', array('article' => $article->getId() )));
+       return $this->redirect($this->generateUrl('articlescommentaires', array('article' => $article->getId())));
     }
 
     /**
@@ -225,5 +248,28 @@ class ArticleController extends Controller {
         //return $this->render('isitechphpMainBundle:Default:ArticleAdd.html.twig');
         // Retourner sur la route /articles
         return $this->redirect($this->generateUrl('articles', array('articles' => $this->selectArticle())));
+    }
+
+    private function cast($destination, $sourceObject)
+    {
+        if (is_string($destination)) {
+            $destination = new $destination();
+        }
+        $sourceReflection = new ReflectionObject($sourceObject);
+        $destinationReflection = new ReflectionObject($destination);
+        $sourceProperties = $sourceReflection->getProperties();
+        foreach ($sourceProperties as $sourceProperty) {
+            $sourceProperty->setAccessible(true);
+            $name = $sourceProperty->getName();
+            $value = $sourceProperty->getValue($sourceObject);
+            if ($destinationReflection->hasProperty($name)) {
+                $propDest = $destinationReflection->getProperty($name);
+                $propDest->setAccessible(true);
+                $propDest->setValue($destination,$value);
+            } else {
+                $destination->$name = $value;
+            }
+        }
+        return $destination;
     }
 }
