@@ -31,7 +31,7 @@ class CheckLogin extends Controller
      */
     public function check_login()
     {
-
+        $newnote = new AlertBootStrap();
 
         $mail = trim($_POST['mail']);
         $password = trim(hash('sha256', trim($_POST['password'])));
@@ -47,8 +47,9 @@ class CheckLogin extends Controller
 
         if($advert == Null)
         {
-            echo "Utilisateur inexistant";
-            return $this->render('isitechphpMainBundle:Default:login.html.twig');
+            $newnote->setMessage("Utilisateur inexistant");
+            $newnote->setType("warning");
+            return $this->render('isitechphpMainBundle:Default:login.html.twig', array('note' => $newnote));
         }
 
         if($advert != Null)
@@ -83,7 +84,6 @@ class CheckLogin extends Controller
             }
             else
             {
-                $newnote = new AlertBootStrap();
                 $newnote->setMessage("Le mot de passe est incorrecte");
                 $newnote->setType("warning");
                 return $this->render('isitechphpMainBundle:Default:login.html.twig', array('note' => $newnote));
