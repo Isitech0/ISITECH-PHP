@@ -12,26 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class UtilisateursController extends Controller
 {
-    /**
-     * @Route("/hellov4")
-     * @Template()
-     */
-    public function indexAction()
-    {
 
-//        $unutilisateur= new Utilisateur();
-//
-//        $unutilisateur->setNom("Leydier");
-//        $unutilisateur->setPrenom("Josselin");
-//        $unutilisateur->setMail("josselin.leydier@gmail.com");
-//        $unutilisateur->setPassword("josselin123");
-//
-//        $listeUtilisateur = new ArrayCollection();
-//        $listeUtilisateur->add($unutilisateur);
-
-
-        return $this->render('isitechphpMainBundle:Default:Utilisateurs.html.twig', array('utilisateurs' => $this->selectUtilisateur()));
-    }
     public function selectUtilisateur()
     {
         $repository = $this->getDoctrine()
@@ -40,6 +21,7 @@ class UtilisateursController extends Controller
         return $repository->findAll();
     }
 
+    //Renvoie sur la page pour afficher ses informations.
     /**
      * Example user_information
      * @Route("/user_information", name="userinformation")
@@ -50,6 +32,8 @@ class UtilisateursController extends Controller
         return $this->render('isitechphpMainBundle:Default:UserInformation.html.twig');
     }
 
+    //Permet de changer ses informations comme le nom,prenom et mot de passe, je vérrifie que l'ancien mot de passe
+    //correspond bien et que le nouveau correspond quand il est confirmé.
     /**
      * Example user_change
      * @Route("/user_change", name="userchange")
