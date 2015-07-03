@@ -44,25 +44,17 @@ class AdminController extends Controller
 
         return $repository->findAll();
     }
-
     /**
-     * @Route("/admin/removeuser")
+     * @Route("/admin/setright", name="setright")
      * @Template()
      */
-    public function removeUser($id){
-      //  \AppBundle\Entity\ $removeUser($this);
-      //  $yc = $this->get('Utilisateur');
-
-        return array('name' => $id);
-    }
-
     public function setRight($iduser, $droit){
         $unuser = new User($iduser);
         $unuser->setDroit($droit);
         //pareilavec fonction danscontroller User
     }
     /**
-     * @Route("/admin/addproduct")
+     * @Route("/admin/addproduct", name="addproduct")
      * @Template()
      */
     public function addproduct($name,$price,$desc){
@@ -81,7 +73,10 @@ class AdminController extends Controller
         return new Response('Article créé : '.$art->getId());
 
     }
-
+    /**
+     * @Route("/admin/removeuser", name="removeuser")
+     * @Template()
+     */
     public function removeUser($idUser){
         $em = $this->getDoctrine()->getManager();
         $com = $em->getRepository('UserBundle:Utilisateur')->find($idUser);
