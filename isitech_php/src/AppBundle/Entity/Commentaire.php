@@ -39,7 +39,7 @@ class Commentaire
     /**
      * @var integer
      * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $user;
 

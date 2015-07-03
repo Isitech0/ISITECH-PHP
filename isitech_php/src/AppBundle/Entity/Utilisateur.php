@@ -60,7 +60,7 @@ class Utilisateur
     /**
      * Liste des commentaires de l'Article
      * @ORM\OneToMany(targetEntity="Commentaire",mappedBy="commentaire")
-     * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $commentaire;
 
